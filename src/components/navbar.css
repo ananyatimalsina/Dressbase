@@ -1,0 +1,65 @@
+.navbarContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 3px solid gray;
+}
+
+.hamburgerMenuButton {
+  cursor: pointer;
+}
+
+@keyframes animateHamburgerLine {
+  0% {
+    d: Path("M0 10.9h30");
+  }
+  100% {
+    d: Path("M3 10.9h24");
+  }
+}
+
+@keyframes animateHamburgerLineBack {
+  0% {
+    d: Path("M3 10.9h24");
+  }
+  100% {
+    d: Path("M0 10.9h30");
+  }
+}
+
+.hamburgerMenuButton {
+  transition: transform 0.5s forwards;
+}
+
+.hamburgerMenuButton:hover {
+  transform: scale(1.1);
+}
+
+.hamburgerMenuButton:hover > #hamburgerLineMiddle {
+  animation: animateHamburgerLine 0.5s forwards;
+}
+
+.hamburgerMenuButton:not(:hover) > #hamburgerLineMiddle {
+  animation: animateHamburgerLineBack 0.5s forwards;
+}
+
+#hamburgerLineTop,
+#hamburgerLineBottom {
+  transition: transform 0.5s ease-in-out;
+}
+
+#hamburgerLineMiddle {
+  transition: opacity 0.5s ease-in-out;
+}
+
+.hamburgerMenuButton.animate > #hamburgerLineTop {
+  transform: rotate(45deg) translate(5px, -7px);
+}
+
+.hamburgerMenuButton.animate > #hamburgerLineMiddle {
+  opacity: 0;
+}
+
+.hamburgerMenuButton.animate > #hamburgerLineBottom {
+  transform: rotate(-45deg) translate(-10px, 0px);
+}

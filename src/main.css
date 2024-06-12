@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lilita+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+
+.container {
+  width: 85%;
+  margin: auto;
+}
+
+.brandingText {
+  font-family: "Anton", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.linkText {
+  font-family: "Lilita One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.5s forwards;
+}
+
+.linkText:hover {
+  transform: scale(1.1);
+}
+
+.marketingText {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
