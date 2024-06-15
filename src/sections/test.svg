@@ -1,7 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="383" height="583" fill="none" viewBox="0 0 383 583">
-  <rect width="297" height="90" x="1.5" y="1.5" stroke="#000" stroke-width="3" rx="45"/>
-  <rect width="297" height="90" x="84.5" y="111.5" stroke="#000" stroke-width="3" rx="45"/>
-  <rect width="297" height="90" x="84.5" y="221.5" stroke="#000" stroke-width="3" rx="45"/>
-  <rect width="297" height="140" x="84.5" y="331.5" stroke="#000" stroke-width="3" rx="48.5"/>
-  <rect width="297" height="90" x="1.5" y="491.5" stroke="#000" stroke-width="3" rx="45"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="389" height="587" fill="none" viewBox="0 0 389 587">
+  <rect width="297" height="90" x="2.5" y="1.5" stroke="#000" stroke-width="3" rx="45"/>
+  <rect width="297" height="107" x="84.5" y="111.5" stroke="#000" stroke-width="3" rx="48.5"/>
+  <rect width="297" height="237" x="90.5" y="238.5" stroke="#000" stroke-width="3" rx="48.5"/>
+  <rect width="297" height="90" x="1.5" y="495.5" stroke="#000" stroke-width="3" rx="45"/>
 </svg>

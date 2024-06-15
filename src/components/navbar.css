@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 3px solid gray;
+  border-bottom: 3px solid #857d8c;
 }
 
 .hamburgerMenuButton {
@@ -28,7 +28,7 @@
 }
 
 .hamburgerMenuButton {
-  transition: transform 0.5s forwards;
+  transition: transform 0.5s ease-in-out;
 }
 
 .hamburgerMenuButton:hover {
@@ -62,4 +62,15 @@
 
 .hamburgerMenuButton.animate > #hamburgerLineBottom {
   transform: rotate(-45deg) translate(-10px, 0px);
+}
+
+#Logo {
+  width: 4.5rem;
+  height: 4.5rem;
+  transition: transform 0.5s ease-in-out;
+  cursor: pointer;
+}
+
+#Logo:hover {
+  transform: rotate(90deg);
 }
