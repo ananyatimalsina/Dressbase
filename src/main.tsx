@@ -14,11 +14,12 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       innerScale={1}
       outerScale={2}
       outerAlpha={0}
+      clickables={["a", ".hamburgerMenuButton", "#Logo", ".overlay"]}
       innerStyle={{
-        backgroundColor: "#333",
+        backgroundColor: "#000",
       }}
       outerStyle={{
-        border: "3px solid #333",
+        border: "3px solid #000",
       }}
     />
     <App />
