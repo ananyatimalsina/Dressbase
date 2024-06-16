@@ -116,7 +116,7 @@ function Home() {
     <>
       {showAnimatedCursor && <div className="cursor" ref={cursor}></div>}
       <div className="homeContainer">
-        <div className="brandingContainer" style={{ marginLeft: "12.5%" }}>
+        <div className="brandingContainer" style={{}}>
           <div
             className="brandingText"
             style={{
@@ -153,7 +153,7 @@ function Home() {
           </div>
         </div>
 
-        <div className="brandingContainer" style={{ marginRight: "12.5%" }}>
+        <div className="brandingContainer" style={{}}>
           <div
             className="marketingText"
             style={{ fontSize: "250%", textDecoration: "overline" }}
