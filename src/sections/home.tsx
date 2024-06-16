@@ -6,6 +6,7 @@ import model_original from "../assets/model_original.png";
 import model_glasses from "../assets/model_glasses.png";
 import model_top from "../assets/model_top.png";
 import model_shorts from "../assets/model_shorts.png";
+import model_shoes from "../assets/model_shoes2.png";
 
 function Home() {
   const [showAnimatedCursor, setShowAnimatedCursor] = useState(false);
@@ -17,16 +18,12 @@ function Home() {
     model_original,
   ];
 
-  const [model, setModel] = useState([
-    model_original,
-    model_original,
-    model_original,
-    model_original,
-  ]);
+  const [model, setModel] = useState(modelDefault);
 
   const rectHead = useRef<HTMLDivElement | null>(null);
   const rectTop = useRef<HTMLDivElement | null>(null);
   const rectShorts = useRef<HTMLDivElement | null>(null);
+  const rectShoes = useRef<HTMLDivElement | null>(null);
 
   const cursor = useRef<HTMLDivElement | null>(null);
 
@@ -42,6 +39,12 @@ function Home() {
       rectHead.current.addEventListener("mouseover", (_event) => {
         setModel((prevModel) => [model_glasses, ...prevModel.slice(1)]);
         setShowAnimatedCursor(true);
+        rectHead.current?.classList.add("imgTransition");
+        setTimeout(() => {
+          if (rectHead.current) {
+            rectHead.current.classList.remove("imgTransition");
+          }
+        }, 300);
       });
       rectHead.current.addEventListener("mouseout", (_event) => {
         setModel(modelDefault);
@@ -57,6 +60,12 @@ function Home() {
           ...prevModel.slice(2),
         ]);
         setShowAnimatedCursor(true);
+        rectTop.current?.classList.add("imgTransition");
+        setTimeout(() => {
+          if (rectTop.current) {
+            rectTop.current.classList.remove("imgTransition");
+          }
+        }, 300);
       });
       rectTop.current.addEventListener("mouseout", (_event) => {
         setModel(modelDefault);
@@ -72,8 +81,31 @@ function Home() {
           ...prevModel.slice(3),
         ]);
         setShowAnimatedCursor(true);
+        rectShorts.current?.classList.add("imgTransition");
+        setTimeout(() => {
+          if (rectShorts.current) {
+            rectShorts.current.classList.remove("imgTransition");
+          }
+        }, 300);
       });
       rectShorts.current.addEventListener("mouseout", (_event) => {
+        setModel(modelDefault);
+        setShowAnimatedCursor(false);
+      });
+    }
+
+    if (rectShoes.current) {
+      rectShoes.current.addEventListener("mouseover", (_event) => {
+        setModel((prevModel) => [...prevModel.slice(0, 3), model_shoes]);
+        setShowAnimatedCursor(true);
+        rectShoes.current?.classList.add("imgTransition");
+        setTimeout(() => {
+          if (rectShoes.current) {
+            rectShoes.current.classList.remove("imgTransition");
+          }
+        }, 300);
+      });
+      rectShoes.current.addEventListener("mouseout", (_event) => {
         setModel(modelDefault);
         setShowAnimatedCursor(false);
       });
@@ -84,6 +116,24 @@ function Home() {
     <>
       {showAnimatedCursor && <div className="cursor" ref={cursor}></div>}
       <div className="homeContainer">
+        <div className="brandingContainer" style={{ marginLeft: "12.5%" }}>
+          <div
+            className="brandingText"
+            style={{
+              marginBottom: "20rem",
+              fontSize: "800%",
+            }}
+          >
+            DRESS
+          </div>
+          <div
+            className="marketingText"
+            style={{ fontSize: "250%", textDecoration: "underline" }}
+          >
+            Fit's Perfect!
+          </div>
+        </div>
+
         <div className="imgContainer">
           <div className="imgWrapper">
             <img src={model[0]} alt="ModelHead" />
@@ -99,28 +149,22 @@ function Home() {
           </div>
           <div className="imgWrapper">
             <img src={model[3]} alt="ModelShoes" />
-            <div className="overlay"></div>
+            <div className="overlay" ref={rectShoes}></div>
           </div>
         </div>
-        <div className="branding">
+
+        <div className="brandingContainer" style={{ marginRight: "12.5%" }}>
           <div
-            className="brandingText"
-            style={{
-              top: "200px",
-              left: "400px",
-              position: "absolute",
-              fontSize: "8rem",
-            }}
+            className="marketingText"
+            style={{ fontSize: "250%", textDecoration: "overline" }}
           >
-            DRESS
+            Bringing fashion closer to you
           </div>
           <div
             className="brandingText"
             style={{
-              top: "480px",
-              right: "400px",
-              position: "absolute",
-              fontSize: "8rem",
+              marginTop: "10rem",
+              fontSize: "800%",
             }}
           >
             BASE
