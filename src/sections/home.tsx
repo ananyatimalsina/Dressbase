@@ -9,8 +9,6 @@ import model_shorts from "../assets/model_shorts.png";
 import model_shoes from "../assets/model_shoes2.png";
 
 function Home() {
-  const [showAnimatedCursor, setShowAnimatedCursor] = useState(false);
-
   const modelDefault = [
     model_original,
     model_original,
@@ -25,30 +23,19 @@ function Home() {
   const rectShorts = useRef<HTMLDivElement | null>(null);
   const rectShoes = useRef<HTMLDivElement | null>(null);
 
-  const cursor = useRef<HTMLDivElement | null>(null);
-
   useEffect(() => {
-    document.addEventListener("mousemove", (event) => {
-      if (cursor.current) {
-        cursor.current.style.left = event.clientX + "px";
-        cursor.current.style.top = event.clientY + "px";
-      }
-    });
-
     if (rectHead.current) {
       rectHead.current.addEventListener("mouseover", (_event) => {
-        setModel((prevModel) => [model_glasses, ...prevModel.slice(1)]);
-        setShowAnimatedCursor(true);
         rectHead.current?.classList.add("imgTransition");
         setTimeout(() => {
           if (rectHead.current) {
             rectHead.current.classList.remove("imgTransition");
           }
         }, 300);
+        setModel((prevModel) => [model_glasses, ...prevModel.slice(1)]);
       });
       rectHead.current.addEventListener("mouseout", (_event) => {
         setModel(modelDefault);
-        setShowAnimatedCursor(false);
       });
     }
 
@@ -59,7 +46,6 @@ function Home() {
           model_top,
           ...prevModel.slice(2),
         ]);
-        setShowAnimatedCursor(true);
         rectTop.current?.classList.add("imgTransition");
         setTimeout(() => {
           if (rectTop.current) {
@@ -69,7 +55,6 @@ function Home() {
       });
       rectTop.current.addEventListener("mouseout", (_event) => {
         setModel(modelDefault);
-        setShowAnimatedCursor(false);
       });
     }
 
@@ -80,7 +65,6 @@ function Home() {
           model_shorts,
           ...prevModel.slice(3),
         ]);
-        setShowAnimatedCursor(true);
         rectShorts.current?.classList.add("imgTransition");
         setTimeout(() => {
           if (rectShorts.current) {
@@ -90,14 +74,12 @@ function Home() {
       });
       rectShorts.current.addEventListener("mouseout", (_event) => {
         setModel(modelDefault);
-        setShowAnimatedCursor(false);
       });
     }
 
     if (rectShoes.current) {
       rectShoes.current.addEventListener("mouseover", (_event) => {
         setModel((prevModel) => [...prevModel.slice(0, 3), model_shoes]);
-        setShowAnimatedCursor(true);
         rectShoes.current?.classList.add("imgTransition");
         setTimeout(() => {
           if (rectShoes.current) {
@@ -107,14 +89,12 @@ function Home() {
       });
       rectShoes.current.addEventListener("mouseout", (_event) => {
         setModel(modelDefault);
-        setShowAnimatedCursor(false);
       });
     }
   }, []);
 
   return (
     <>
-      {showAnimatedCursor && <div className="cursor" ref={cursor}></div>}
       <div className="homeContainer">
         <div className="brandingContainer" style={{}}>
           <div
