@@ -96,7 +96,7 @@ function Home() {
   return (
     <>
       <div className="homeContainer">
-        <div className="brandingContainer" style={{}}>
+        <div className="brandingContainer" style={{ marginLeft: "1rem" }}>
           <div
             className="brandingText"
             style={{
@@ -133,7 +133,7 @@ function Home() {
           </div>
         </div>
 
-        <div className="brandingContainer" style={{}}>
+        <div className="brandingContainer" style={{ marginRight: "1rem" }}>
           <div
             className="marketingText"
             style={{ fontSize: "250%", textDecoration: "overline" }}
