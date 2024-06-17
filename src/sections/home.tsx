@@ -2,15 +2,15 @@ import { useEffect, useRef, useState } from "react";
 
 import "./home.css";
 
-import model_original_glasses from "../assets/model_original/glasses.png";
-import model_original_top from "../assets/model_original/top.png";
-import model_original_shorts from "../assets/model_original/shorts.png";
-import model_original_shoes from "../assets/model_original/shoes.png";
+import model_original_glasses from "../assets/model_original/glasses.webp";
+import model_original_top from "../assets/model_original/top.webp";
+import model_original_shorts from "../assets/model_original/shorts.webp";
+import model_original_shoes from "../assets/model_original/shoes.webp";
 
-import model_modified_glasses from "../assets/model_modified/glasses.png";
-import model_modified_top from "../assets/model_modified/top.png";
-import model_modified_shorts from "../assets/model_modified/shorts.png";
-import model_modified_shoes from "../assets/model_modified/shoes.png";
+import model_modified_glasses from "../assets/model_modified/glasses.webp";
+import model_modified_top from "../assets/model_modified/top.webp";
+import model_modified_shorts from "../assets/model_modified/shorts.webp";
+import model_modified_shoes from "../assets/model_modified/shoes.webp";
 
 function Home() {
   const modelDefault = [
