@@ -16,6 +16,14 @@ function Home() {
     model_original,
   ];
 
+  const model_avilable = [
+    model_original,
+    model_glasses,
+    model_top,
+    model_shorts,
+    model_shoes,
+  ];
+
   const [model, setModel] = useState(modelDefault);
 
   const rectHead = useRef<HTMLDivElement | null>(null);
@@ -24,6 +32,11 @@ function Home() {
   const rectShoes = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    for (let i = 0; i < model_avilable.length; i++) {
+      const img = new Image();
+      img.src = model_avilable[i];
+    }
+
     if (rectHead.current) {
       rectHead.current.addEventListener("mouseover", (_event) => {
         rectHead.current?.classList.add("imgTransition");
