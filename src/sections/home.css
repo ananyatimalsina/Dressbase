@@ -24,6 +24,12 @@
   margin-bottom: 0.75rem;
 }
 
+@media (max-width: 1070px) {
+  .brandingContainer {
+    display: none;
+  }
+}
+
 @keyframes slide {
   from {
     left: -100%;

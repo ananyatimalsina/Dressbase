@@ -6,7 +6,7 @@ import model_original from "../assets/model_original.png";
 import model_glasses from "../assets/model_glasses.png";
 import model_top from "../assets/model_top.png";
 import model_shorts from "../assets/model_shorts.png";
-import model_shoes from "../assets/model_shoes2.png";
+import model_shoes from "../assets/model_shoes.png";
 
 function Home() {
   const modelDefault = [
@@ -31,7 +31,28 @@ function Home() {
   const rectShorts = useRef<HTMLDivElement | null>(null);
   const rectShoes = useRef<HTMLDivElement | null>(null);
 
+  const [margin, setMargin] = useState("20rem");
+
   useEffect(() => {
+    const handleResize = () => {
+      const viewportWidth = window.innerWidth;
+      const baseMargin = 20; // base margin in rem
+      const decreasePer50px = 50 / 41; // decrease margin by 1rem every 50px
+
+      if (viewportWidth <= 1920) {
+        const decreasedMargin =
+          baseMargin -
+          Math.floor((1920 - viewportWidth) / 50) * decreasePer50px;
+        setMargin(`${decreasedMargin}rem`);
+      }
+    };
+
+    // Attach the event listener
+    window.addEventListener("resize", handleResize);
+
+    // Call the handleResize function initially to set the margin based on the initial window size
+    handleResize();
+
     for (let i = 0; i < model_avilable.length; i++) {
       const img = new Image();
       img.src = model_avilable[i];
@@ -109,7 +130,7 @@ function Home() {
   return (
     <>
       <div className="homeContainer">
-        <div className="brandingContainer" style={{ marginLeft: "1rem" }}>
+        <div className="brandingContainer" style={{ marginLeft: margin }}>
           <div
             className="brandingText"
             style={{
@@ -146,7 +167,7 @@ function Home() {
           </div>
         </div>
 
-        <div className="brandingContainer" style={{ marginRight: "1rem" }}>
+        <div className="brandingContainer" style={{ marginRight: margin }}>
           <div
             className="marketingText"
             style={{ fontSize: "250%", textDecoration: "overline" }}
