@@ -21,7 +21,7 @@
 
 .imgWrapper {
   position: relative;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 
 @media (max-width: 1070px) {
@@ -76,26 +76,7 @@
 
 .imgWrapper img {
   position: relative;
-  width: 25rem;
-  height: 6.5rem;
   object-fit: cover;
-}
-
-.imgWrapper:nth-child(1) img {
-  object-position: 0 0;
-}
-
-.imgWrapper:nth-child(2) img {
-  object-position: 0 -8rem;
-}
-
-.imgWrapper:nth-child(3) img {
-  object-position: 0 -16rem;
-  height: 15rem;
-}
-
-.imgWrapper:nth-child(4) img {
-  object-position: 0 -31.8rem;
 }
 
 .cursor {

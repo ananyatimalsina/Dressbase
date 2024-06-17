@@ -2,26 +2,30 @@ import { useEffect, useRef, useState } from "react";
 
 import "./home.css";
 
-import model_original from "../assets/model_original.png";
-import model_glasses from "../assets/model_glasses.png";
-import model_top from "../assets/model_top.png";
-import model_shorts from "../assets/model_shorts.png";
-import model_shoes from "../assets/model_shoes.png";
+import model_original_glasses from "../assets/model_original/glasses.png";
+import model_original_top from "../assets/model_original/top.png";
+import model_original_shorts from "../assets/model_original/shorts.png";
+import model_original_shoes from "../assets/model_original/shoes.png";
+
+import model_modified_glasses from "../assets/model_modified/glasses.png";
+import model_modified_top from "../assets/model_modified/top.png";
+import model_modified_shorts from "../assets/model_modified/shorts.png";
+import model_modified_shoes from "../assets/model_modified/shoes.png";
 
 function Home() {
   const modelDefault = [
-    model_original,
-    model_original,
-    model_original,
-    model_original,
+    model_original_glasses,
+    model_original_top,
+    model_original_shorts,
+    model_original_shoes,
   ];
 
   const model_avilable = [
-    model_original,
-    model_glasses,
-    model_top,
-    model_shorts,
-    model_shoes,
+    ...modelDefault,
+    model_modified_glasses,
+    model_modified_top,
+    model_modified_shorts,
+    model_modified_shoes,
   ];
 
   const [model, setModel] = useState(modelDefault);
@@ -66,7 +70,10 @@ function Home() {
             rectHead.current.classList.remove("imgTransition");
           }
         }, 300);
-        setModel((prevModel) => [model_glasses, ...prevModel.slice(1)]);
+        setModel((prevModel) => [
+          model_modified_glasses,
+          ...prevModel.slice(1),
+        ]);
       });
       rectHead.current.addEventListener("mouseout", (_event) => {
         setModel(modelDefault);
@@ -77,7 +84,7 @@ function Home() {
       rectTop.current.addEventListener("mouseover", (_event) => {
         setModel((prevModel) => [
           prevModel[0],
-          model_top,
+          model_modified_top,
           ...prevModel.slice(2),
         ]);
         rectTop.current?.classList.add("imgTransition");
@@ -96,7 +103,7 @@ function Home() {
       rectShorts.current.addEventListener("mouseover", (_event) => {
         setModel((prevModel) => [
           ...prevModel.slice(0, 2),
-          model_shorts,
+          model_modified_shorts,
           ...prevModel.slice(3),
         ]);
         rectShorts.current?.classList.add("imgTransition");
@@ -113,7 +120,10 @@ function Home() {
 
     if (rectShoes.current) {
       rectShoes.current.addEventListener("mouseover", (_event) => {
-        setModel((prevModel) => [...prevModel.slice(0, 3), model_shoes]);
+        setModel((prevModel) => [
+          ...prevModel.slice(0, 3),
+          model_modified_shoes,
+        ]);
         rectShoes.current?.classList.add("imgTransition");
         setTimeout(() => {
           if (rectShoes.current) {

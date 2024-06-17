@@ -3,6 +3,7 @@
   justify-content: center;
   align-items: center;
   border-bottom: 3px solid #857d8c;
+  user-select: none;
 }
 
 @keyframes animateHamburgerLine {
@@ -64,7 +65,6 @@
   width: 4.5rem;
   height: 4.5rem;
   transition: transform 0.5s ease-in-out;
-  cursor: pointer;
 }
 
 #Logo:hover {
