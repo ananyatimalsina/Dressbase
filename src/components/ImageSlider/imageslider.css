@@ -10,7 +10,7 @@
 
 .imgWrapper {
   position: relative;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
 }
 
 @keyframes slide {
@@ -19,6 +19,15 @@
   }
   to {
     left: 100%;
+  }
+}
+
+@keyframes slideBack {
+  from {
+    left: 100%;
+  }
+  to {
+    left: -100%;
   }
 }
 
@@ -32,6 +41,7 @@
   border: 3px solid #000;
   border-radius: 3rem;
   overflow: hidden;
+  display: flex;
 }
 
 .overlay::before {
@@ -44,8 +54,16 @@
   background: white;
 }
 
-.imgTransition::before {
+.overlay img {
+  z-index: -99;
+}
+
+.imgTransitionSlide::before {
   animation: slide 300ms ease-out forwards;
+}
+
+.imgTransitionSlideBack::before {
+  animation: slideBack 300ms ease-out forwards;
 }
 
 .imgWrapper:nth-child(2) .overlay,

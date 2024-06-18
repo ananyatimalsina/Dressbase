@@ -10,6 +10,11 @@ import model_modified_top from "../../assets/model_modified/top.webp";
 import model_modified_shorts from "../../assets/model_modified/shorts.webp";
 import model_modified_shoes from "../../assets/model_modified/shoes.webp";
 
+import model_background_glasses from "../../assets/background/glasses.webp";
+import model_background_top from "../../assets/background/top.webp";
+import model_background_shorts from "../../assets/background/shorts.webp";
+import model_background_shoes from "../../assets/background/shoes.webp";
+
 import "./imageslider.css";
 
 function ImageSlider() {
@@ -35,84 +40,36 @@ function ImageSlider() {
   const rectShorts = useRef<HTMLDivElement | null>(null);
   const rectShoes = useRef<HTMLDivElement | null>(null);
 
+  const mouseOverEvent = (
+    ref: React.MutableRefObject<HTMLDivElement | null>,
+    modelIndex: number,
+    newModel: string
+  ) => {
+    setModel((prevModel) => [
+      ...prevModel.slice(0, modelIndex),
+      newModel,
+      ...prevModel.slice(modelIndex + 1),
+    ]);
+    ref.current?.classList.add("imgTransitionSlide");
+    setTimeout(() => {
+      ref.current?.classList.remove("imgTransitionSlide");
+    }, 300);
+  };
+
+  const mouseOutEvent = (
+    ref: React.MutableRefObject<HTMLDivElement | null>
+  ) => {
+    setModel(modelDefault);
+    ref.current?.classList.add("imgTransitionSlideBack");
+    setTimeout(() => {
+      ref.current?.classList.remove("imgTransitionSlideBack");
+    }, 300);
+  };
+
   useEffect(() => {
     for (let i = 0; i < model_avilable.length; i++) {
       const img = new Image();
       img.src = model_avilable[i];
-    }
-
-    if (rectHead.current) {
-      rectHead.current.addEventListener("mouseover", (_event) => {
-        rectHead.current?.classList.add("imgTransition");
-        setTimeout(() => {
-          if (rectHead.current) {
-            rectHead.current.classList.remove("imgTransition");
-          }
-        }, 300);
-        setModel((prevModel) => [
-          model_modified_glasses,
-          ...prevModel.slice(1),
-        ]);
-      });
-      rectHead.current.addEventListener("mouseout", (_event) => {
-        setModel(modelDefault);
-      });
-    }
-
-    if (rectTop.current) {
-      rectTop.current.addEventListener("mouseover", (_event) => {
-        setModel((prevModel) => [
-          prevModel[0],
-          model_modified_top,
-          ...prevModel.slice(2),
-        ]);
-        rectTop.current?.classList.add("imgTransition");
-        setTimeout(() => {
-          if (rectTop.current) {
-            rectTop.current.classList.remove("imgTransition");
-          }
-        }, 300);
-      });
-      rectTop.current.addEventListener("mouseout", (_event) => {
-        setModel(modelDefault);
-      });
-    }
-
-    if (rectShorts.current) {
-      rectShorts.current.addEventListener("mouseover", (_event) => {
-        setModel((prevModel) => [
-          ...prevModel.slice(0, 2),
-          model_modified_shorts,
-          ...prevModel.slice(3),
-        ]);
-        rectShorts.current?.classList.add("imgTransition");
-        setTimeout(() => {
-          if (rectShorts.current) {
-            rectShorts.current.classList.remove("imgTransition");
-          }
-        }, 300);
-      });
-      rectShorts.current.addEventListener("mouseout", (_event) => {
-        setModel(modelDefault);
-      });
-    }
-
-    if (rectShoes.current) {
-      rectShoes.current.addEventListener("mouseover", (_event) => {
-        setModel((prevModel) => [
-          ...prevModel.slice(0, 3),
-          model_modified_shoes,
-        ]);
-        rectShoes.current?.classList.add("imgTransition");
-        setTimeout(() => {
-          if (rectShoes.current) {
-            rectShoes.current.classList.remove("imgTransition");
-          }
-        }, 300);
-      });
-      rectShoes.current.addEventListener("mouseout", (_event) => {
-        setModel(modelDefault);
-      });
     }
   }, []);
 
@@ -120,19 +77,53 @@ function ImageSlider() {
     <div className="imgContainer">
       <div className="imgWrapper">
         <img src={model[0]} alt="ModelHead" />
-        <div className="overlay" ref={rectHead}></div>
+        <div
+          className="overlay"
+          ref={rectHead}
+          onMouseEnter={() =>
+            mouseOverEvent(rectHead, 0, model_modified_glasses)
+          }
+          onMouseLeave={() => mouseOutEvent(rectHead)}
+        >
+          <img src={model_background_glasses} alt="Background Glasses" />
+        </div>
       </div>
       <div className="imgWrapper">
         <img src={model[1]} alt="ModelTop" />
-        <div className="overlay" ref={rectTop}></div>
+        <div
+          className="overlay"
+          ref={rectTop}
+          onMouseEnter={() => mouseOverEvent(rectTop, 1, model_modified_top)}
+          onMouseLeave={() => mouseOutEvent(rectTop)}
+        >
+          <img src={model_background_top} alt="Background Top" />
+        </div>
       </div>
       <div className="imgWrapper">
         <img src={model[2]} alt="ModelShorts" />
-        <div className="overlay" ref={rectShorts}></div>
+        <div
+          className="overlay"
+          ref={rectShorts}
+          onMouseEnter={() =>
+            mouseOverEvent(rectShorts, 2, model_modified_shorts)
+          }
+          onMouseLeave={() => mouseOutEvent(rectShorts)}
+        >
+          <img src={model_background_shorts} alt="Background Shorts" />
+        </div>
       </div>
       <div className="imgWrapper">
         <img src={model[3]} alt="ModelShoes" />
-        <div className="overlay" ref={rectShoes}></div>
+        <div
+          className="overlay"
+          ref={rectShoes}
+          onMouseEnter={() =>
+            mouseOverEvent(rectShoes, 3, model_modified_shoes)
+          }
+          onMouseLeave={() => mouseOutEvent(rectShoes)}
+        >
+          <img src={model_background_shoes} alt="Background Shoes" />
+        </div>
       </div>
     </div>
   );
