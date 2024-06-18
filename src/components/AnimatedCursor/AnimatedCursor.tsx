@@ -431,10 +431,6 @@ function AnimatedCursor({
   showSystemCursor,
   trailingSpeed,
 }: AnimatedCursorProps) {
-  const isTouchdevice = useIsTouchdevice();
-  if (typeof window !== "undefined" && isTouchdevice) {
-    return <></>;
-  }
   return (
     <CursorCore
       clickables={clickables}
