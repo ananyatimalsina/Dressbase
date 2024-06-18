@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 
-import AnimatedCursor from "react-animated-cursor";
+import AnimatedCursor from "./components/AnimatedCursor/AnimatedCursor";
 
 import "./main.css";
 

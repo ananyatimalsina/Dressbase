@@ -1,8 +1,10 @@
+/* #857d8c */
+
 .navbarContainer {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 3px solid #857d8c;
+  border-bottom: 3px solid #694d85;
   user-select: none;
 }
 
