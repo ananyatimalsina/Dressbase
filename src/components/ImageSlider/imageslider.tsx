@@ -18,12 +18,12 @@ import model_background_shoes from "../../assets/background/shoes.webp";
 import "./imageslider.css";
 
 function ImageSlider() {
-  const modelDefault = [
+  const [modelDefault, setModelDefault] = useState([
     model_original_glasses,
     model_original_top,
     model_original_shorts,
     model_original_shoes,
-  ];
+  ]);
 
   const model_avilable = [
     ...modelDefault,
@@ -39,6 +39,14 @@ function ImageSlider() {
   const rectTop = useRef<HTMLDivElement | null>(null);
   const rectShorts = useRef<HTMLDivElement | null>(null);
   const rectShoes = useRef<HTMLDivElement | null>(null);
+
+  const mouseDownEvent = (modelIndex: number, newModel: string) => {
+    setModelDefault((prevModelDefault) => [
+      ...prevModelDefault.slice(0, modelIndex),
+      newModel,
+      ...prevModelDefault.slice(modelIndex + 1),
+    ]);
+  };
 
   const mouseOverEvent = (
     ref: React.MutableRefObject<HTMLDivElement | null>,
@@ -80,10 +88,21 @@ function ImageSlider() {
         <div
           className="overlay"
           ref={rectHead}
+          onMouseDown={() => {
+            modelDefault[0] === model_original_glasses
+              ? mouseDownEvent(0, model_modified_glasses)
+              : mouseDownEvent(0, model_original_glasses);
+          }}
           onMouseEnter={() =>
-            mouseOverEvent(rectHead, 0, model_modified_glasses)
+            modelDefault[0] === model_original_glasses
+              ? mouseOverEvent(rectHead, 0, model_modified_glasses)
+              : null
           }
-          onMouseLeave={() => mouseOutEvent(rectHead)}
+          onMouseLeave={() =>
+            modelDefault[0] === model_original_glasses
+              ? mouseOutEvent(rectHead)
+              : null
+          }
         >
           <img src={model_background_glasses} alt="Background Glasses" />
         </div>
@@ -93,8 +112,21 @@ function ImageSlider() {
         <div
           className="overlay"
           ref={rectTop}
-          onMouseEnter={() => mouseOverEvent(rectTop, 1, model_modified_top)}
-          onMouseLeave={() => mouseOutEvent(rectTop)}
+          onMouseDown={() => {
+            modelDefault[1] === model_original_top
+              ? mouseDownEvent(1, model_modified_top)
+              : mouseDownEvent(1, model_original_top);
+          }}
+          onMouseEnter={() =>
+            modelDefault[1] === model_original_top
+              ? mouseOverEvent(rectTop, 1, model_modified_top)
+              : null
+          }
+          onMouseLeave={() =>
+            modelDefault[1] === model_original_top
+              ? mouseOutEvent(rectTop)
+              : null
+          }
         >
           <img src={model_background_top} alt="Background Top" />
         </div>
@@ -104,10 +136,21 @@ function ImageSlider() {
         <div
           className="overlay"
           ref={rectShorts}
+          onMouseDown={() => {
+            modelDefault[2] === model_original_shorts
+              ? mouseDownEvent(2, model_modified_shorts)
+              : mouseDownEvent(2, model_original_shorts);
+          }}
           onMouseEnter={() =>
-            mouseOverEvent(rectShorts, 2, model_modified_shorts)
+            modelDefault[2] === model_original_shorts
+              ? mouseOverEvent(rectShorts, 2, model_modified_shorts)
+              : null
           }
-          onMouseLeave={() => mouseOutEvent(rectShorts)}
+          onMouseLeave={() =>
+            modelDefault[2] === model_original_shorts
+              ? mouseOutEvent(rectShorts)
+              : null
+          }
         >
           <img src={model_background_shorts} alt="Background Shorts" />
         </div>
@@ -117,10 +160,21 @@ function ImageSlider() {
         <div
           className="overlay"
           ref={rectShoes}
+          onMouseDown={() => {
+            modelDefault[3] === model_original_shoes
+              ? mouseDownEvent(3, model_modified_shoes)
+              : mouseDownEvent(3, model_original_shoes);
+          }}
           onMouseEnter={() =>
-            mouseOverEvent(rectShoes, 3, model_modified_shoes)
+            modelDefault[3] === model_original_shoes
+              ? mouseOverEvent(rectShoes, 3, model_modified_shoes)
+              : null
           }
-          onMouseLeave={() => mouseOutEvent(rectShoes)}
+          onMouseLeave={() =>
+            modelDefault[3] === model_original_shoes
+              ? mouseOutEvent(rectShoes)
+              : null
+          }
         >
           <img src={model_background_shoes} alt="Background Shoes" />
         </div>

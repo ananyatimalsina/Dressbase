@@ -1,5 +1,6 @@
 import Navbar from "./components/Navbar/navbar";
-import Home from "./sections/home";
+import Home from "./sections/Home/home";
+import About from "./sections/About/about";
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
         <h1>The Plan</h1>
       </section>
       <section>
-        <h1>Über uns</h1>
+        <About />
       </section>
     </div>
   );
