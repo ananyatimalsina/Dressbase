@@ -15,7 +15,7 @@ import model_background_top from "../../assets/background/top.webp";
 import model_background_shorts from "../../assets/background/shorts.webp";
 import model_background_shoes from "../../assets/background/shoes.webp";
 
-import "./imageslider.css";
+import "./ImageSlider.css";
 
 function ImageSlider() {
   const [modelDefault, setModelDefault] = useState([
@@ -40,12 +40,15 @@ function ImageSlider() {
   const rectShorts = useRef<HTMLDivElement | null>(null);
   const rectShoes = useRef<HTMLDivElement | null>(null);
 
+  const [skipAnimation, setSkipAnimation] = useState(false);
+
   const mouseDownEvent = (modelIndex: number, newModel: string) => {
     setModelDefault((prevModelDefault) => [
       ...prevModelDefault.slice(0, modelIndex),
       newModel,
       ...prevModelDefault.slice(modelIndex + 1),
     ]);
+    setSkipAnimation(true);
   };
 
   const mouseOverEvent = (
@@ -53,25 +56,42 @@ function ImageSlider() {
     modelIndex: number,
     newModel: string
   ) => {
-    setModel((prevModel) => [
-      ...prevModel.slice(0, modelIndex),
-      newModel,
-      ...prevModel.slice(modelIndex + 1),
-    ]);
-    ref.current?.classList.add("imgTransitionSlide");
-    setTimeout(() => {
-      ref.current?.classList.remove("imgTransitionSlide");
-    }, 300);
+    if (!skipAnimation) {
+      setModel((prevModel) => [
+        ...prevModel.slice(0, modelIndex),
+        newModel,
+        ...prevModel.slice(modelIndex + 1),
+      ]);
+      ref.current?.classList.add("imgTransitionSlide");
+      setTimeout(() => {
+        ref.current?.classList.remove("imgTransitionSlide");
+      }, 300);
+    }
+    setSkipAnimation(false);
   };
 
   const mouseOutEvent = (
-    ref: React.MutableRefObject<HTMLDivElement | null>
+    ref: React.MutableRefObject<HTMLDivElement | null>,
+    modelIndex: number | null = null,
+    newModel: string | null = null
   ) => {
-    setModel(modelDefault);
-    ref.current?.classList.add("imgTransitionSlideBack");
-    setTimeout(() => {
-      ref.current?.classList.remove("imgTransitionSlideBack");
-    }, 300);
+    if (!skipAnimation) {
+      if (modelIndex != null && newModel != null) {
+        setModel((prevModel) => [
+          ...prevModel.slice(0, modelIndex),
+          newModel,
+          ...prevModel.slice(modelIndex + 1),
+        ]);
+      } else {
+        setModel(modelDefault);
+      }
+
+      ref.current?.classList.add("imgTransitionSlideBack");
+      setTimeout(() => {
+        ref.current?.classList.remove("imgTransitionSlideBack");
+      }, 300);
+    }
+    setSkipAnimation(false);
   };
 
   useEffect(() => {
@@ -96,12 +116,12 @@ function ImageSlider() {
           onMouseEnter={() =>
             modelDefault[0] === model_original_glasses
               ? mouseOverEvent(rectHead, 0, model_modified_glasses)
-              : null
+              : mouseOutEvent(rectHead, 0, model_original_glasses)
           }
           onMouseLeave={() =>
             modelDefault[0] === model_original_glasses
               ? mouseOutEvent(rectHead)
-              : null
+              : mouseOverEvent(rectHead, 0, model_modified_glasses)
           }
         >
           <img src={model_background_glasses} alt="Background Glasses" />
@@ -120,12 +140,12 @@ function ImageSlider() {
           onMouseEnter={() =>
             modelDefault[1] === model_original_top
               ? mouseOverEvent(rectTop, 1, model_modified_top)
-              : null
+              : mouseOutEvent(rectTop, 1, model_original_top)
           }
           onMouseLeave={() =>
             modelDefault[1] === model_original_top
               ? mouseOutEvent(rectTop)
-              : null
+              : mouseOverEvent(rectTop, 1, model_modified_top)
           }
         >
           <img src={model_background_top} alt="Background Top" />
@@ -144,12 +164,12 @@ function ImageSlider() {
           onMouseEnter={() =>
             modelDefault[2] === model_original_shorts
               ? mouseOverEvent(rectShorts, 2, model_modified_shorts)
-              : null
+              : mouseOutEvent(rectShorts, 2, model_original_shorts)
           }
           onMouseLeave={() =>
             modelDefault[2] === model_original_shorts
               ? mouseOutEvent(rectShorts)
-              : null
+              : mouseOverEvent(rectShorts, 2, model_modified_shorts)
           }
         >
           <img src={model_background_shorts} alt="Background Shorts" />
@@ -168,12 +188,12 @@ function ImageSlider() {
           onMouseEnter={() =>
             modelDefault[3] === model_original_shoes
               ? mouseOverEvent(rectShoes, 3, model_modified_shoes)
-              : null
+              : mouseOutEvent(rectShoes, 3, model_original_shoes)
           }
           onMouseLeave={() =>
             modelDefault[3] === model_original_shoes
               ? mouseOutEvent(rectShoes)
-              : null
+              : mouseOverEvent(rectShoes, 3, model_modified_shoes)
           }
         >
           <img src={model_background_shoes} alt="Background Shoes" />

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import ImageSlider from "../../components/ImageSlider/imageslider";
+import ImageSlider from "../../components/ImageSlider/ImageSlider";
 
 import "./home.css";
 
