@@ -4,18 +4,20 @@ import About from "./sections/About/about";
 
 function App() {
   return (
-    <div className="container">
+    <>
       <Navbar />
-      <section>
-        <Home />
-      </section>
-      <section>
-        <h1>The Plan</h1>
-      </section>
-      <section>
-        <About />
-      </section>
-    </div>
+      <div className="container">
+        <section>
+          <Home />
+        </section>
+        <section>
+          <h1>The Plan</h1>
+        </section>
+        <section>
+          <About />
+        </section>
+      </div>
+    </>
   );
 }
 

@@ -10,7 +10,7 @@ body {
 }
 
 .container {
-  margin: auto;
+  padding-top: 4rem;
 }
 
 .brandingText {
