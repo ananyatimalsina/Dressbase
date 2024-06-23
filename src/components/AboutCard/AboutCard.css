@@ -1,3 +1,15 @@
+.aboutCardContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20rem;
+  padding: 1rem;
+}
+
 .aboutCardContainer img {
+  user-select: none;
   border: 3px solid #000;
+  border-radius: 50%;
+  height: 20rem;
+  width: 20rem;
 }

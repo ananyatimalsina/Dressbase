@@ -1,0 +1,14 @@
+.aboutContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.aboutContainer h1 {
+  align-self: center;
+}
+
+.aboutCardsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}

@@ -14,7 +14,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       innerScale={1}
       outerScale={2}
       outerAlpha={0}
-      clickables={["a", ".hamburgerMenuButton", "#Logo", ".overlay"]}
+      clickables={["a", ".hamburgerMenu", "#Logo", ".overlay"]}
       innerStyle={{
         backgroundColor: "#000",
       }}
