@@ -4,6 +4,8 @@ import image from "../../assets/background.jpg";
 
 import "./about.css";
 
+// TODO: Optimize for mobile
+
 function about() {
   return (
     <div className="aboutContainer">
