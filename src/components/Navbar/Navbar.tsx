@@ -57,7 +57,7 @@ function Navbar() {
           <FaXTwitter /> Twitter
         </a>
       </div>
-      <Hamburger toggled={isOpen} toggle={setOpen} />
+      <Hamburger toggled={isOpen} toggle={setOpen} label="showMenu" />
       <CheeseburgerMenu
         isOpen={isOpen}
         closeCallback={closeMenu}
@@ -67,6 +67,7 @@ function Navbar() {
         <Hamburger
           toggled={isOpen}
           toggle={setOpen}
+          label="hideMenu"
           onToggle={() => !isOpen && closeMenu()}
         />
         <div className="my-menu-content">
