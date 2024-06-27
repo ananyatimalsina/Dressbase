@@ -7,9 +7,7 @@ import "./Navbar.css";
 import { useState } from "react";
 
 function Navbar() {
-  const [isOpen, setOpen] = useState(false);
-
-  const closeMenu = () => {};
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className="navbarContainer">
@@ -57,24 +55,31 @@ function Navbar() {
           <FaXTwitter /> Twitter
         </a>
       </div>
-      <Hamburger toggled={isOpen} toggle={setOpen} label="showMenu" />
+      <Hamburger toggled={isOpen} toggle={setIsOpen} label="showMenu" />
       <CheeseburgerMenu
         isOpen={isOpen}
-        closeCallback={closeMenu}
+        closeCallback={() => setIsOpen(false)}
         right={true}
         backgroundColor="#cdc1d9"
       >
-        <Hamburger
-          toggled={isOpen}
-          toggle={setOpen}
-          label="hideMenu"
-          onToggle={() => !isOpen && closeMenu()}
-        />
+        <Hamburger toggled={isOpen} toggle={setIsOpen} label="hideMenu" />
         <div className="my-menu-content">
-          <a className="linkText" href="#home">
+          <a
+            className="linkText"
+            href="#home"
+            onClick={() => {
+              setIsOpen(false);
+            }}
+          >
             Home
           </a>
-          <a className="linkText" href="#about">
+          <a
+            className="linkText"
+            href="#about"
+            onClick={() => {
+              setIsOpen(false);
+            }}
+          >
             About
           </a>
         </div>
