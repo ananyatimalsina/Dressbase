@@ -6,14 +6,14 @@ function App() {
   return (
     <>
       <Navbar />
-      <div className="container">
+      <div className="container" id="home">
         <section>
           <Home />
         </section>
         <section>
           <h1>The Plan</h1>
         </section>
-        <section>
+        <section id="about">
           <About />
         </section>
       </div>

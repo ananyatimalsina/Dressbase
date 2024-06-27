@@ -1,9 +1,16 @@
 import { FaInstagram, FaFacebookF } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import { Squash as Hamburger } from "hamburger-react";
+import CheeseburgerMenu from "cheeseburger-menu";
 
 import "./Navbar.css";
+import { useState } from "react";
 
 function Navbar() {
+  const [isOpen, setOpen] = useState(false);
+
+  const closeMenu = () => {};
+
   return (
     <div className="navbarContainer">
       <svg
@@ -50,18 +57,27 @@ function Navbar() {
           <FaXTwitter /> Twitter
         </a>
       </div>
-      <div
-        className="hamburgerMenu"
-        onClick={() => {
-          document
-            .getElementsByClassName("hamburgerMenu")[0]!
-            .classList.toggle("open");
-        }}
+      <Hamburger toggled={isOpen} toggle={setOpen} />
+      <CheeseburgerMenu
+        isOpen={isOpen}
+        closeCallback={closeMenu}
+        right={true}
+        backgroundColor="#cdc1d9"
       >
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
+        <Hamburger
+          toggled={isOpen}
+          toggle={setOpen}
+          onToggle={() => !isOpen && closeMenu()}
+        />
+        <div className="my-menu-content">
+          <a className="linkText" href="#home">
+            Home
+          </a>
+          <a className="linkText" href="#about">
+            About
+          </a>
+        </div>
+      </CheeseburgerMenu>
     </div>
   );
 }
