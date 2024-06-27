@@ -41,8 +41,11 @@ function ImageSlider() {
   const rectShoes = useRef<HTMLDivElement | null>(null);
 
   const [skipAnimation, setSkipAnimation] = useState(false);
+  const [isClick, setIsClick] = useState(false);
 
   const mouseDownEvent = (modelIndex: number, newModel: string) => {
+    if (!isClick) return;
+    setIsClick(false);
     setModelDefault((prevModelDefault) => [
       ...prevModelDefault.slice(0, modelIndex),
       newModel,
@@ -56,6 +59,7 @@ function ImageSlider() {
     modelIndex: number,
     newModel: string
   ) => {
+    setIsClick(true);
     if (!skipAnimation) {
       setModel((prevModel) => [
         ...prevModel.slice(0, modelIndex),
