@@ -105,12 +105,6 @@ function CursorCore({
   const endX = useRef(0);
   const endY = useRef(0);
 
-  const isTouchdevice = useIsTouchdevice();
-  const [timeoutId, setTimeoutId] = useState<number | null>(null);
-  const [display, setDisplay] = useState<"none" | "flex">(
-    isTouchdevice ? "none" : "flex"
-  );
-
   /**
    * Primary Mouse move event
    * @param {number} clientX - MouseEvent.clientX
@@ -125,20 +119,6 @@ function CursorCore({
     }
     endX.current = clientX;
     endY.current = clientY;
-
-    if (isTouchdevice) {
-      setDisplay("flex");
-
-      if (timeoutId) {
-        clearTimeout(timeoutId);
-      }
-
-      const newTimeoutId = setTimeout(() => {
-        setDisplay("none");
-      }, 1000);
-
-      setTimeoutId(newTimeoutId);
-    }
   }, []);
 
   // Outer Cursor Animation Delay
@@ -364,8 +344,8 @@ function CursorCore({
   }, [showSystemCursor]);
 
   const coreStyles: CSSProperties = {
-    zIndex: 1000,
-    display: display,
+    zIndex: 999,
+    display: "flex",
     justifyContent: "center",
     alignItems: "center",
     position: "fixed",
@@ -431,6 +411,10 @@ function AnimatedCursor({
   showSystemCursor,
   trailingSpeed,
 }: AnimatedCursorProps) {
+  const isTouchdevice = useIsTouchdevice();
+  if (typeof window !== "undefined" && isTouchdevice) {
+    return <></>;
+  }
   return (
     <CursorCore
       clickables={clickables}

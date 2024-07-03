@@ -16,6 +16,7 @@ import model_background_shorts from "../../assets/background/shorts.webp";
 import model_background_shoes from "../../assets/background/shoes.webp";
 
 import "./ImageSlider.css";
+import useIsTouchdevice from "../AnimatedCursor/hooks/useIsTouchdevice";
 
 function ImageSlider() {
   const [modelDefault, setModelDefault] = useState([
@@ -43,15 +44,31 @@ function ImageSlider() {
   const [skipAnimation, setSkipAnimation] = useState(false);
   const [isClick, setIsClick] = useState(false);
 
-  const mouseDownEvent = (modelIndex: number, newModel: string) => {
-    if (!isClick) return;
-    setIsClick(false);
+  const isTouchDevice = useIsTouchdevice();
+
+  const mouseDownEvent = (
+    modelIndex: number,
+    modelModified: string,
+    modelOriginal: string,
+    ref: React.MutableRefObject<HTMLDivElement | null>
+  ) => {
+    if (isTouchDevice) {
+      console.log("touchDevice");
+      modelDefault[modelIndex] === modelModified
+        ? mouseOutEvent(ref, modelIndex, modelOriginal)
+        : mouseOverEvent(ref, modelIndex, modelModified);
+    } else {
+      if (!isClick) return;
+      setIsClick(false);
+    }
     setModelDefault((prevModelDefault) => [
       ...prevModelDefault.slice(0, modelIndex),
-      newModel,
+      modelDefault[modelIndex] === modelModified
+        ? modelOriginal
+        : modelModified,
       ...prevModelDefault.slice(modelIndex + 1),
     ]);
-    setSkipAnimation(true);
+    if (!isTouchDevice) setSkipAnimation(true);
   };
 
   const mouseOverEvent = (
@@ -113,19 +130,27 @@ function ImageSlider() {
           className="overlay"
           ref={rectHead}
           onMouseDown={() => {
-            modelDefault[0] === model_original_glasses
-              ? mouseDownEvent(0, model_modified_glasses)
-              : mouseDownEvent(0, model_original_glasses);
+            console.log("mouseDownEvent");
+            mouseDownEvent(
+              0,
+              model_modified_glasses,
+              model_original_glasses,
+              rectHead
+            );
           }}
           onMouseEnter={() =>
-            modelDefault[0] === model_original_glasses
-              ? mouseOverEvent(rectHead, 0, model_modified_glasses)
-              : mouseOutEvent(rectHead, 0, model_original_glasses)
+            !isTouchDevice
+              ? modelDefault[0] === model_original_glasses
+                ? mouseOverEvent(rectHead, 0, model_modified_glasses)
+                : mouseOutEvent(rectHead, 0, model_original_glasses)
+              : null
           }
           onMouseLeave={() =>
-            modelDefault[0] === model_original_glasses
-              ? mouseOutEvent(rectHead)
-              : mouseOverEvent(rectHead, 0, model_modified_glasses)
+            !isTouchDevice
+              ? modelDefault[0] === model_original_glasses
+                ? mouseOutEvent(rectHead)
+                : mouseOverEvent(rectHead, 0, model_modified_glasses)
+              : null
           }
         >
           <img src={model_background_glasses} alt="Background Glasses" />
@@ -137,19 +162,21 @@ function ImageSlider() {
           className="overlay"
           ref={rectTop}
           onMouseDown={() => {
-            modelDefault[1] === model_original_top
-              ? mouseDownEvent(1, model_modified_top)
-              : mouseDownEvent(1, model_original_top);
+            mouseDownEvent(1, model_modified_top, model_original_top, rectTop);
           }}
           onMouseEnter={() =>
-            modelDefault[1] === model_original_top
-              ? mouseOverEvent(rectTop, 1, model_modified_top)
-              : mouseOutEvent(rectTop, 1, model_original_top)
+            !isTouchDevice
+              ? modelDefault[1] === model_original_top
+                ? mouseOverEvent(rectTop, 1, model_modified_top)
+                : mouseOutEvent(rectTop, 1, model_original_top)
+              : null
           }
           onMouseLeave={() =>
-            modelDefault[1] === model_original_top
-              ? mouseOutEvent(rectTop)
-              : mouseOverEvent(rectTop, 1, model_modified_top)
+            !isTouchDevice
+              ? modelDefault[1] === model_original_top
+                ? mouseOutEvent(rectTop)
+                : mouseOverEvent(rectTop, 1, model_modified_top)
+              : null
           }
         >
           <img src={model_background_top} alt="Background Top" />
@@ -161,19 +188,26 @@ function ImageSlider() {
           className="overlay"
           ref={rectShorts}
           onMouseDown={() => {
-            modelDefault[2] === model_original_shorts
-              ? mouseDownEvent(2, model_modified_shorts)
-              : mouseDownEvent(2, model_original_shorts);
+            mouseDownEvent(
+              2,
+              model_modified_shorts,
+              model_original_shorts,
+              rectShorts
+            );
           }}
           onMouseEnter={() =>
-            modelDefault[2] === model_original_shorts
-              ? mouseOverEvent(rectShorts, 2, model_modified_shorts)
-              : mouseOutEvent(rectShorts, 2, model_original_shorts)
+            !isTouchDevice
+              ? modelDefault[2] === model_original_shorts
+                ? mouseOverEvent(rectShorts, 2, model_modified_shorts)
+                : mouseOutEvent(rectShorts, 2, model_original_shorts)
+              : null
           }
           onMouseLeave={() =>
-            modelDefault[2] === model_original_shorts
-              ? mouseOutEvent(rectShorts)
-              : mouseOverEvent(rectShorts, 2, model_modified_shorts)
+            !isTouchDevice
+              ? modelDefault[2] === model_original_shorts
+                ? mouseOutEvent(rectShorts)
+                : mouseOverEvent(rectShorts, 2, model_modified_shorts)
+              : null
           }
         >
           <img src={model_background_shorts} alt="Background Shorts" />
@@ -185,19 +219,26 @@ function ImageSlider() {
           className="overlay"
           ref={rectShoes}
           onMouseDown={() => {
-            modelDefault[3] === model_original_shoes
-              ? mouseDownEvent(3, model_modified_shoes)
-              : mouseDownEvent(3, model_original_shoes);
+            mouseDownEvent(
+              3,
+              model_modified_shoes,
+              model_original_shoes,
+              rectShoes
+            );
           }}
           onMouseEnter={() =>
-            modelDefault[3] === model_original_shoes
-              ? mouseOverEvent(rectShoes, 3, model_modified_shoes)
-              : mouseOutEvent(rectShoes, 3, model_original_shoes)
+            !isTouchDevice
+              ? modelDefault[3] === model_original_shoes
+                ? mouseOverEvent(rectShoes, 3, model_modified_shoes)
+                : mouseOutEvent(rectShoes, 3, model_original_shoes)
+              : null
           }
           onMouseLeave={() =>
-            modelDefault[3] === model_original_shoes
-              ? mouseOutEvent(rectShoes)
-              : mouseOverEvent(rectShoes, 3, model_modified_shoes)
+            !isTouchDevice
+              ? modelDefault[3] === model_original_shoes
+                ? mouseOutEvent(rectShoes)
+                : mouseOverEvent(rectShoes, 3, model_modified_shoes)
+              : null
           }
         >
           <img src={model_background_shoes} alt="Background Shoes" />
