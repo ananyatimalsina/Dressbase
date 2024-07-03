@@ -18,6 +18,8 @@ import model_background_shoes from "../../assets/background/shoes.webp";
 import "./ImageSlider.css";
 import useIsTouchdevice from "../AnimatedCursor/hooks/useIsTouchdevice";
 
+// TODO: Clean up logic handeling for the mouse over and mouse out events
+
 function ImageSlider() {
   const [modelDefault, setModelDefault] = useState([
     model_original_glasses,
@@ -25,6 +27,8 @@ function ImageSlider() {
     model_original_shorts,
     model_original_shoes,
   ]);
+
+  const [isClick, setIsClick] = useState([false, false, false, false]);
 
   const model_avilable = [
     ...modelDefault,
@@ -42,7 +46,6 @@ function ImageSlider() {
   const rectShoes = useRef<HTMLDivElement | null>(null);
 
   const [skipAnimation, setSkipAnimation] = useState(false);
-  const [isClick, setIsClick] = useState(false);
 
   const isTouchDevice = useIsTouchdevice();
 
@@ -58,8 +61,12 @@ function ImageSlider() {
         ? mouseOutEvent(ref, modelIndex, modelOriginal)
         : mouseOverEvent(ref, modelIndex, modelModified);
     } else {
-      if (!isClick) return;
-      setIsClick(false);
+      if (!isClick[modelIndex]) return;
+      setIsClick((prevIsClick) => [
+        ...prevIsClick.slice(0, modelIndex),
+        false,
+        ...prevIsClick.slice(modelIndex + 1),
+      ]);
     }
     setModelDefault((prevModelDefault) => [
       ...prevModelDefault.slice(0, modelIndex),
@@ -76,7 +83,11 @@ function ImageSlider() {
     modelIndex: number,
     newModel: string
   ) => {
-    setIsClick(true);
+    setIsClick((prevIsClick) => [
+      ...prevIsClick.slice(0, modelIndex),
+      true,
+      ...prevIsClick.slice(modelIndex + 1),
+    ]);
     if (!skipAnimation) {
       setModel((prevModel) => [
         ...prevModel.slice(0, modelIndex),
