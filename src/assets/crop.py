@@ -21,8 +21,6 @@ def crop_image(image_path, height,  y):
 
     return cropped_image
 
-from PIL import Image
-
 #background
 image_path = "./background.jpg"
 output_path = "./background/"

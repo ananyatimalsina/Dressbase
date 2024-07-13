@@ -6,11 +6,13 @@
   padding: 1rem;
 }
 
+/* TODO: Fix User select */
 .aboutCardContainer img {
   user-select: none;
   border: 3px solid #000;
   border-radius: 50%;
   height: 20rem;
   width: 20rem;
-  object-fit: cover;
+  object-fit: contain;
+  background-color: white;
 }

@@ -1,7 +1,8 @@
 import AboutCard from "../../components/AboutCard/AboutCard";
 
 import image from "../../assets/background.jpg";
-import niklas from "../../assets/niklas.jpg";
+import ananya from "../../assets/ananya.png";
+import niklas from "../../assets/niklas.png";
 
 import "./about.css";
 
@@ -13,7 +14,7 @@ function about() {
       <h1 className="textBold">Das Team</h1>
       <div className="aboutCardsContainer">
         <AboutCard
-          img={image}
+          img={ananya}
           alt="Ananya"
           title="CEO, Ananya Timalsina"
           text="Mit 5 Jahren Erfahrung in Software, von Videospielen bis hin zu professionellen Websites, und als frühzeitiger Anwender und Enthusiast von KI bringe ich sowohl das technische Know-how als auch die kreative Vision an Bord, um Dressbase zu einem führenden Unternehmen in der Branche zu katapultieren."

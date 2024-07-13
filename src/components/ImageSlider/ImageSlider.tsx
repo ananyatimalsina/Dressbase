@@ -56,7 +56,6 @@ function ImageSlider() {
     ref: React.MutableRefObject<HTMLDivElement | null>
   ) => {
     if (isTouchDevice) {
-      console.log("touchDevice");
       modelDefault[modelIndex] === modelModified
         ? mouseOutEvent(ref, modelIndex, modelOriginal)
         : mouseOverEvent(ref, modelIndex, modelModified);

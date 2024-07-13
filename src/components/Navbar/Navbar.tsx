@@ -44,7 +44,14 @@ function Navbar() {
           </tspan>
         </text>
       </svg>
-      <div style={{ flex: 1, display: "flex", justifyContent: "space-evenly" }}>
+      <div
+        style={{
+          flex: 1,
+          display: "flex",
+          justifyContent: "space-evenly",
+          alignSelf: "center",
+        }}
+      >
         <a className="linkText" href="https://www.instagram.com">
           <FaInstagram /> Instagram
         </a>
