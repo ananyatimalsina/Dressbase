@@ -3,12 +3,14 @@ import AboutCard from "../../components/AboutCard/AboutCard";
 import ananya from "../../assets/team/ananya.png";
 import niklas from "../../assets/team/niklas.png";
 import jonathan from "../../assets/team/jonathan.png";
+import paul from "../../assets/team/paul.png";
+import luca from "../../assets/team/luca.png";
 
 import "./about.css";
 import usePreloadImages from "../../usePreloadImages";
 
 function about() {
-  usePreloadImages([ananya, niklas, jonathan]);
+  usePreloadImages([ananya, niklas, jonathan, paul, luca]);
 
   return (
     <div className="aboutContainer">
@@ -33,16 +35,16 @@ function about() {
           text="Mit einem guten Händchen für Personen und Kommunikation leite ich den internen Austausch zwischen unseren Mitarbeitern und kümmere mich darum, dass Sie sich in unserer Firma wohlfühlen."
         />
         <AboutCard
-          img={""}
-          alt="Luca"
-          title="HoMR, Luca Augsten"
-          text="Mit mehreren Jahren Erfahrung in der Marktforschung entwickle ich eine zielführende Strategie, um Dressbase mit seiner revolutionären Idee zum Erfolg zu führen."
-        />
-        <AboutCard
-          img={""}
+          img={paul}
           alt="Paul"
           title="CFO, Paul Schaut"
           text="Mit großer Leidenschaft für Geld und Zahlen leite ich den finanziellen Sektor von Dressbase und kümmere mich um Ausgaben und Einnahmen, damit unser Start-up auf finanziell starken Beinen steht."
+        />
+        <AboutCard
+          img={luca}
+          alt="Luca"
+          title="HoMR, Luca Augsten"
+          text="Mit mehreren Jahren Erfahrung in der Marktforschung entwickle ich eine zielführende Strategie, um Dressbase mit seiner revolutionären Idee zum Erfolg zu führen."
         />
       </div>
     </div>

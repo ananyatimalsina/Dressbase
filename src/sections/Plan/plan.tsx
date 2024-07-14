@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 
 import { CodeBlock } from "react-code-block";
 import { themes } from "prism-react-renderer";
+import Comparison from "../../components/Comparison/comparison";
 
 //TODO: Optimize mobile view
 
@@ -144,6 +145,7 @@ outputImg = dressbase.modifyClothing(inputImg, inputClothes)
             flexGrow: 1,
             display: "flex",
             flexDirection: "column",
+            margin: "1rem",
           }}
         >
           <a
@@ -241,7 +243,7 @@ outputImg = dressbase.modifyClothing(inputImg, inputClothes)
           , damit sie sich auf das konzentrieren können, was wirklich wichtig
           ist: Ihre Fashion und die Kunden.
         </span>
-        <div style={{ flexGrow: 1, marginLeft: "1rem", marginRight: "1rem" }}>
+        <div style={{ flexGrow: 1, margin: "1rem" }}>
           <CodeBlock code={code} language="python" theme={themes.dracula}>
             <CodeBlock.Code className="codeblock">
               <CodeBlock.LineContent>
@@ -251,9 +253,8 @@ outputImg = dressbase.modifyClothing(inputImg, inputClothes)
           </CodeBlock>
         </div>
       </div>
-
       <div className="fastFashionContainer">
-        <div style={{ flexGrow: 1, display: "flex", flexDirection: "column" }}>
+        <div style={{ flexGrow: 1, margin: "1rem" }}>
           <LineChart width={width} height={300} data={data_fastFashion}>
             <Line
               type="monotone"
@@ -282,6 +283,17 @@ outputImg = dressbase.modifyClothing(inputImg, inputClothes)
           Und kompetetive Preise. Verglichen mit unseren - qualitativ
           schlechteren - Konkurrenten ist unser Produkt Preis- und Hochwertiger.
         </span>
+        <div style={{ flexGrow: 1, margin: "1rem" }}>
+          <Comparison
+            columns={["", "Dressbase", "Fitanalytics", "Else Corp", "FXGear"]}
+            rows={[
+              ["Preis", "$0.002 pro Bild", "N/A", "N/A", "N/A"],
+              ["Virtual Dressing Room", "VTON", "N/A", "AR", "AR"],
+              ["API", "Ja", "Ja", "Nein", "Nein"],
+              ["Kleidungs Empfehlungen", "Nein", "Ja", "Nein", "Nein"],
+            ]}
+          />
+        </div>
       </div>
       <a
         href="https://github.com/ananyatimalsina"
