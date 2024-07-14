@@ -97,7 +97,19 @@ const ImageSlider: React.FC = () => {
         return newModel;
       });
 
-      setSkipAnimation(true);
+      if (isTouchDevice) {
+        if (model[index] === modelModified[index]) {
+          refs.current[index]?.classList.add("imgTransitionSlideBack");
+          setTimeout(() => {
+            refs.current[index]?.classList.remove("imgTransitionSlideBack");
+          }, 300);
+        } else {
+          refs.current[index]?.classList.add("imgTransitionSlide");
+          setTimeout(() => {
+            refs.current[index]?.classList.remove("imgTransitionSlide");
+          }, 300);
+        }
+      }
     },
     [isClick, initialModel, modelModified]
   );

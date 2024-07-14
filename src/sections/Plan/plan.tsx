@@ -5,7 +5,6 @@ import {
   XAxis,
   CartesianGrid,
   Tooltip,
-  YAxis,
 } from "recharts";
 
 import "./plan.css";
