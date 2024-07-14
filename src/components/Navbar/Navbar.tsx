@@ -82,12 +82,21 @@ function Navbar() {
           </a>
           <a
             className="linkText"
+            href="#plan"
+            onClick={() => {
+              setIsOpen(false);
+            }}
+          >
+            Der Plan
+          </a>
+          <a
+            className="linkText"
             href="#about"
             onClick={() => {
               setIsOpen(false);
             }}
           >
-            About
+            Das Team
           </a>
         </div>
       </CheeseburgerMenu>

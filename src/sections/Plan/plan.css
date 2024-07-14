@@ -1,0 +1,35 @@
+.planContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 2rem;
+}
+
+.planContainer a {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  color: #694d85;
+}
+
+.introContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+@media (max-width: 1200px) {
+  .introContainer {
+    flex-direction: column;
+  }
+}
+
+.textLink {
+  font-family: "Comfortaa", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  text-align: center;
+  font-size: 1.1rem;
+  color: #694d85;
+}

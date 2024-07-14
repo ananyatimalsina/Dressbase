@@ -43,6 +43,8 @@ body {
   font-optical-sizing: auto;
   font-weight: 300;
   font-style: normal;
+  text-align: center;
+  font-size: 1.1rem;
 }
 
 .textBold {
@@ -50,4 +52,6 @@ body {
   font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal;
+  text-align: center;
+  font-size: 1.5rem;
 }

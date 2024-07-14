@@ -17,12 +17,16 @@ function Home() {
           baseMargin -
           Math.floor((1920 - viewportWidth) / 50) * decreasePer50px;
         setMargin(`${decreasedMargin}rem`);
+      } else {
+        setMargin(`${baseMargin}rem`);
       }
     };
 
     window.addEventListener("resize", handleResize);
 
     handleResize();
+
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (

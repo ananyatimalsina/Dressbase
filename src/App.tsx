@@ -11,7 +11,7 @@ function App() {
         <section>
           <Home />
         </section>
-        <section>
+        <section id="plan">
           <Plan />
         </section>
         <section id="about">
