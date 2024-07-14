@@ -288,7 +288,7 @@ outputImg = dressbase.modifyClothing(inputImg, inputClothes)
             columns={["", "Dressbase", "Fitanalytics", "Else Corp", "FXGear"]}
             rows={[
               ["Preis", "$0.002 pro Bild", "N/A", "N/A", "N/A"],
-              ["Virtual Dressing Room", "VTON", "N/A", "AR", "AR"],
+              ["Virtual Dressing Room", "VTON", "Nein", "AR", "AR"],
               ["API", "Ja", "Ja", "Nein", "Nein"],
               ["Kleidungsempfehlungen", "Nein", "Ja", "Nein", "Nein"],
             ]}
