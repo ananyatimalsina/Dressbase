@@ -5,6 +5,8 @@ import {
   XAxis,
   CartesianGrid,
   Tooltip,
+  LineChart,
+  Line,
 } from "recharts";
 
 import "./plan.css";
@@ -40,7 +42,7 @@ export default function Plan() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const data = [
+  const data_retour = [
     {
       name: "Falsche Größe, schlechte Passform oder Farbe",
       Prozent: 55,
@@ -72,6 +74,53 @@ export default function Plan() {
     {
       name: "Keine Online Rückgaben",
       Prozent: 17,
+    },
+  ];
+
+  const data_fastFashion = [
+    {
+      name: "2020",
+      pv: 82.58,
+    },
+    {
+      name: "2021",
+      pv: 90,
+    },
+    {
+      name: "2022",
+      pv: 98.7,
+    },
+    {
+      name: "2023",
+      pv: 99,
+    },
+    {
+      name: "2024",
+      pv: 108,
+    },
+    {
+      name: "2025",
+      pv: 113.5,
+    },
+    {
+      name: "2026",
+      pv: 120,
+    },
+    {
+      name: "2027",
+      pv: 130,
+    },
+    {
+      name: "2028",
+      pv: 150,
+    },
+    {
+      name: "2029",
+      pv: 160,
+    },
+    {
+      name: "2030",
+      pv: 167.5,
     },
   ];
 
@@ -109,7 +158,7 @@ outputImg = dressbase.modifyClothing(inputImg, inputClothes)
             style={{ cursor: "none", userSelect: "none" }}
             width={width}
             height={300}
-            data={data}
+            data={data_retour}
           >
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis display={"none"} dataKey="name" />
@@ -203,6 +252,31 @@ outputImg = dressbase.modifyClothing(inputImg, inputClothes)
         </div>
       </div>
       <div className="pricingContainer"></div>
+      <div className="fastFashionContainer">
+        <div style={{ flexGrow: 1, display: "flex", flexDirection: "column" }}>
+          <LineChart width={width} height={300} data={data_fastFashion}>
+            <Line
+              type="monotone"
+              dataKey="pv"
+              stroke="#694d85"
+              strokeWidth={3}
+            />
+          </LineChart>
+        </div>
+        <span className="text">
+          Schnelles Wachstum: Die Fast Fashion Industrie soll{" "}
+          <a
+            className="textLink"
+            href="https://worldmetrics.org/fast-fashion-statistics/#sources"
+            target="_blank"
+          >
+            bis 2029 43,6 Mrd. USD wert
+          </a>{" "}
+          sein. Da die meisten dieser Unternehmen ohne physische Läden
+          operieren, ist es für sie besonders wichtig, dass ihre Kunden die
+          Kleidung online anprobieren können. Mit Dressbase können sie dies tun.
+        </span>
+      </div>
       <a
         href="https://github.com/ananyatimalsina"
         target="_blank"

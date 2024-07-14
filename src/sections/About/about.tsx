@@ -3,6 +3,7 @@ import AboutCard from "../../components/AboutCard/AboutCard";
 import image from "../../assets/background.jpg";
 import ananya from "../../assets/team/ananya.png";
 import niklas from "../../assets/team/niklas.png";
+import jonathan from "../../assets/team/jonathan.png";
 
 import "./about.css";
 
@@ -30,7 +31,7 @@ function about() {
           text="Mit mehreren Jahren Erfahrung in der Marktforschung entwickle ich eine zielführende Strategie, um Dressbase mit seiner revolutionären Idee zum Erfolg zu führen."
         />
         <AboutCard
-          img={image}
+          img={jonathan}
           alt="Jonathan"
           title="CAO, Jonathan Zdebel"
           text="Mit einem guten Händchen für Personen und Kommunikation leite ich den internen Austausch zwischen unseren Mitarbeitern und kümmere mich darum, dass Sie sich in unserer Firma wohlfühlen."

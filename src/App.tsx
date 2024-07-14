@@ -8,7 +8,7 @@ function App() {
     <>
       <Navbar />
       <div className="container" id="home">
-        <section>
+        <section style={{ marginBottom: "10rem" }}>
           <Home />
         </section>
         <section id="plan">
