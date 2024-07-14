@@ -1,6 +1,7 @@
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./sections/Home/home";
 import About from "./sections/About/about";
+import Plan from "./sections/Plan/plan";
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
           <Home />
         </section>
         <section>
-          <h1>The Plan</h1>
+          <Plan />
         </section>
         <section id="about">
           <About />

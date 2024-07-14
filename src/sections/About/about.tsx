@@ -34,7 +34,7 @@ function about() {
         <AboutCard
           img={image}
           alt="Jonathan"
-          title="CAO, Jonathan Ztebel"
+          title="CAO, Jonathan Zdebel"
           text="Help me!"
         />
         <AboutCard
