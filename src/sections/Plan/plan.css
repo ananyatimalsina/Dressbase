@@ -8,12 +8,14 @@
 
 .introContainer,
 .apiContainer,
-.fastFashionContainer {
+.fastFashionContainer,
+.pricingContainer {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   margin: 1rem;
+  padding: 1rem;
 }
 
 @media (max-width: 1200px) {
@@ -21,7 +23,8 @@
   .fastFashionContainer {
     flex-direction: column;
   }
-  .apiContainer {
+  .apiContainer,
+  .pricingContainer {
     flex-direction: column-reverse;
   }
 }

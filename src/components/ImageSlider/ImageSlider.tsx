@@ -1,10 +1,4 @@
-import React, {
-  useState,
-  useRef,
-  useEffect,
-  useCallback,
-  useMemo,
-} from "react";
+import React, { useState, useRef, useCallback, useMemo } from "react";
 import model_original_glasses from "../../assets/model_original/glasses.webp";
 import model_original_top from "../../assets/model_original/top.webp";
 import model_original_shorts from "../../assets/model_original/shorts.webp";
@@ -19,22 +13,7 @@ import model_background_shorts from "../../assets/background/shorts.webp";
 import model_background_shoes from "../../assets/background/shoes.webp";
 import "./ImageSlider.css";
 import useIsTouchdevice from "../AnimatedCursor/hooks/useIsTouchdevice";
-
-const usePreloadImages = (imageUrls: string[]) => {
-  useEffect(() => {
-    const images = imageUrls.map((url) => {
-      const img = new Image();
-      img.src = url;
-      return img;
-    });
-
-    return () => {
-      images.forEach((img) => {
-        img.onload = null;
-      });
-    };
-  }, [imageUrls]);
-};
+import usePreloadImages from "../../usePreloadImages";
 
 const ImageSlider: React.FC = () => {
   const initialModel = useMemo(

@@ -1,13 +1,15 @@
 import AboutCard from "../../components/AboutCard/AboutCard";
 
-import image from "../../assets/background.jpg";
 import ananya from "../../assets/team/ananya.png";
 import niklas from "../../assets/team/niklas.png";
 import jonathan from "../../assets/team/jonathan.png";
 
 import "./about.css";
+import usePreloadImages from "../../usePreloadImages";
 
 function about() {
+  usePreloadImages([ananya, niklas, jonathan]);
+
   return (
     <div className="aboutContainer">
       <h1 className="heading">Das Team</h1>
@@ -25,19 +27,19 @@ function about() {
           text="Mit mehrjähriger Erfahrung im Marketing und einer Leidenschaft für Innovation und Technologie gestalte ich die Marketingstrategie, die Dressbase zum Erfolg führt."
         />
         <AboutCard
-          img={image}
-          alt="Luca"
-          title="HoMR, Luca Augsten"
-          text="Mit mehreren Jahren Erfahrung in der Marktforschung entwickle ich eine zielführende Strategie, um Dressbase mit seiner revolutionären Idee zum Erfolg zu führen."
-        />
-        <AboutCard
           img={jonathan}
           alt="Jonathan"
           title="CAO, Jonathan Zdebel"
           text="Mit einem guten Händchen für Personen und Kommunikation leite ich den internen Austausch zwischen unseren Mitarbeitern und kümmere mich darum, dass Sie sich in unserer Firma wohlfühlen."
         />
         <AboutCard
-          img={image}
+          img={""}
+          alt="Luca"
+          title="HoMR, Luca Augsten"
+          text="Mit mehreren Jahren Erfahrung in der Marktforschung entwickle ich eine zielführende Strategie, um Dressbase mit seiner revolutionären Idee zum Erfolg zu führen."
+        />
+        <AboutCard
+          img={""}
           alt="Paul"
           title="CFO, Paul Schaut"
           text="Mit großer Leidenschaft für Geld und Zahlen leite ich den finanziellen Sektor von Dressbase und kümmere mich um Ausgaben und Einnahmen, damit unser Start-up auf finanziell starken Beinen steht."

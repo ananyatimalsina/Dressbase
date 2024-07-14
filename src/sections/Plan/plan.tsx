@@ -183,7 +183,7 @@ outputImg = dressbase.modifyClothing(inputImg, inputClothes)
           >
             "Virtual Dressing Rooms"
           </a>{" "}
-          gelöst werden.
+          vermieden werden.
         </span>
       </div>
       <h1 style={{ fontSize: "2rem" }} className="brandingText">
@@ -251,7 +251,7 @@ outputImg = dressbase.modifyClothing(inputImg, inputClothes)
           </CodeBlock>
         </div>
       </div>
-      <div className="pricingContainer"></div>
+
       <div className="fastFashionContainer">
         <div style={{ flexGrow: 1, display: "flex", flexDirection: "column" }}>
           <LineChart width={width} height={300} data={data_fastFashion}>
@@ -274,7 +274,13 @@ outputImg = dressbase.modifyClothing(inputImg, inputClothes)
           </a>{" "}
           sein. Da die meisten dieser Unternehmen ohne physische Läden
           operieren, ist es für sie besonders wichtig, dass ihre Kunden die
-          Kleidung online anprobieren können. Mit Dressbase können sie dies tun.
+          Kleidung online anprobieren können. Mit Dressbase ist dies möglich.
+        </span>
+      </div>
+      <div className="pricingContainer">
+        <span className="text">
+          Und kompetetive Preise. Verglichen mit unseren - qualitativ
+          schlechteren - Konkurrenten ist unser Produkt Preis- und Hochwertiger.
         </span>
       </div>
       <a
