@@ -218,9 +218,9 @@ outputImg = dressbase.modifyClothing(inputImg, inputClothes)
           AR
         </a>{" "}
         über Meilen hinweg voraus ist und auf vorab trainierte latente
-        Diffusionsmodelle basiert. Um unseren Traum einer Online Fashion
-        Revolution zu verwirklichen, bedarf es jedoch an vielen begeisterten
-        Investoren. Was wir Ihnen bieten?
+        Diffusionsmodelle basiert. Um unseren Traum einer
+        Online-Fashion-Revolution zu verwirklichen, bedarf es jedoch an vielen
+        begeisterten Investoren. Was wir Ihnen bieten?
       </span>
       <div className="apiContainer">
         <span className="text">
@@ -280,8 +280,8 @@ outputImg = dressbase.modifyClothing(inputImg, inputClothes)
       </div>
       <div className="pricingContainer">
         <span className="text">
-          Und kompetetive Preise. Verglichen mit unseren - qualitativ
-          schlechteren - Konkurrenten ist unser Produkt Preis- und Hochwertiger.
+          Und kompetitive Preise. Verglichen mit unseren - qualitativ
+          schlechteren - Konkurrenten ist unser Produkt preis- und hochwertiger.
         </span>
         <div style={{ flexGrow: 1, margin: "1rem" }}>
           <Comparison
@@ -290,7 +290,7 @@ outputImg = dressbase.modifyClothing(inputImg, inputClothes)
               ["Preis", "$0.002 pro Bild", "N/A", "N/A", "N/A"],
               ["Virtual Dressing Room", "VTON", "N/A", "AR", "AR"],
               ["API", "Ja", "Ja", "Nein", "Nein"],
-              ["Kleidungs Empfehlungen", "Nein", "Ja", "Nein", "Nein"],
+              ["Kleidungsempfehlungen", "Nein", "Ja", "Nein", "Nein"],
             ]}
           />
         </div>
@@ -300,7 +300,7 @@ outputImg = dressbase.modifyClothing(inputImg, inputClothes)
         target="_blank"
         className="investNowBtn textBold"
       >
-        Jetzt Investieren
+        Jetzt investieren
       </a>
     </div>
   );
