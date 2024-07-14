@@ -66,7 +66,28 @@ const ImageSlider = () => {
   }, [modelDefault]);
 
   const handleMouseDown = useCallback(
-    (modelIndex: number, modelModified: string, modelOriginal: string) => {
+    (
+      ref: React.MutableRefObject<HTMLDivElement | null>,
+      modelIndex: number,
+      modelModified: string,
+      modelOriginal: string
+    ) => {
+      if (isTouchDevice) {
+        if (modelDefault[modelIndex] === modelOriginal) {
+          ref.current?.classList.add("imgTransitionSlide");
+          setTimeout(() => {
+            ref.current?.classList.remove("imgTransitionSlide");
+          }, 300);
+        } else if (modelDefault[modelIndex] === modelModified) {
+          ref.current?.classList.add("imgTransitionSlideBack");
+          setTimeout(() => {
+            ref.current?.classList.remove("imgTransitionSlideBack");
+          }, 300);
+        }
+      } else {
+        setSkipAnimation(true);
+      }
+
       setModelDefault((prevModelDefault) => [
         ...prevModelDefault.slice(0, modelIndex),
         prevModelDefault[modelIndex] === modelModified
@@ -74,9 +95,8 @@ const ImageSlider = () => {
           : modelModified,
         ...prevModelDefault.slice(modelIndex + 1),
       ]);
-      setSkipAnimation(true);
     },
-    []
+    [modelDefault]
   );
 
   const handleMouseOver = useCallback(
@@ -85,7 +105,7 @@ const ImageSlider = () => {
       modelIndex: number,
       newModel: string
     ) => {
-      if (!skipAnimation) {
+      if (!skipAnimation || isTouchDevice) {
         setModel((prevModel) => [
           ...prevModel.slice(0, modelIndex),
           newModel,
@@ -107,7 +127,7 @@ const ImageSlider = () => {
       modelIndex: number,
       newModel: string
     ) => {
-      if (!skipAnimation) {
+      if (!skipAnimation || isTouchDevice) {
         setModel((prevModel) => [
           ...prevModel.slice(0, modelIndex),
           newModel,
@@ -142,17 +162,21 @@ const ImageSlider = () => {
         className="overlay"
         ref={ref}
         onMouseDown={() =>
-          handleMouseDown(modelIndex, modelModified, modelOriginal)
+          handleMouseDown(ref, modelIndex, modelModified, modelOriginal)
         }
         onMouseEnter={() =>
-          !isTouchDevice && modelDefault[modelIndex] === modelOriginal
-            ? handleMouseOver(ref, modelIndex, modelModified)
-            : handleMouseOut(ref, modelIndex, modelOriginal)
+          !isTouchDevice
+            ? modelDefault[modelIndex] === modelOriginal
+              ? handleMouseOver(ref, modelIndex, modelModified)
+              : handleMouseOut(ref, modelIndex, modelOriginal)
+            : null
         }
         onMouseLeave={() =>
-          !isTouchDevice && modelDefault[modelIndex] === modelOriginal
-            ? handleMouseOut(ref, modelIndex, modelOriginal)
-            : handleMouseOver(ref, modelIndex, modelModified)
+          !isTouchDevice
+            ? modelDefault[modelIndex] === modelOriginal
+              ? handleMouseOut(ref, modelIndex, modelOriginal)
+              : handleMouseOver(ref, modelIndex, modelModified)
+            : null
         }
       >
         <img src={backgroundSrc} alt={`Background ${modelIndex}`} />
