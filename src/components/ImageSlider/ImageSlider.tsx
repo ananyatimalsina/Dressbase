@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback, useMemo } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import model_original_glasses from "../../assets/model_original/glasses.webp";
 import model_original_top from "../../assets/model_original/top.webp";
 import model_original_shorts from "../../assets/model_original/shorts.webp";
@@ -12,146 +12,188 @@ import model_background_top from "../../assets/background/top.webp";
 import model_background_shorts from "../../assets/background/shorts.webp";
 import model_background_shoes from "../../assets/background/shoes.webp";
 import "./ImageSlider.css";
-import useIsTouchdevice from "../AnimatedCursor/hooks/useIsTouchdevice";
-import usePreloadImages from "../../usePreloadImages";
+import useIsTouchDevice from "../AnimatedCursor/hooks/useIsTouchdevice";
 
-const ImageSlider: React.FC = () => {
-  const initialModel = useMemo(
-    () => [
-      model_original_glasses,
-      model_original_top,
-      model_original_shorts,
-      model_original_shoes,
-    ],
-    []
-  );
+const usePreloadImages = (imageUrls: string[]) => {
+  useEffect(() => {
+    const images = imageUrls.map((url) => {
+      const img = new Image();
+      img.src = url;
+      return img;
+    });
 
-  const modelModified = useMemo(
-    () => [
-      model_modified_glasses,
-      model_modified_top,
-      model_modified_shorts,
-      model_modified_shoes,
-    ],
-    []
-  );
+    return () => {
+      images.forEach((img) => {
+        img.onload = null;
+      });
+    };
+  }, [imageUrls]);
+};
 
-  const modelBackground = useMemo(
-    () => [
-      model_background_glasses,
-      model_background_top,
-      model_background_shorts,
-      model_background_shoes,
-    ],
-    []
-  );
-
-  const [model, setModel] = useState<string[]>(initialModel);
-  const [isClick, setIsClick] = useState<boolean[]>([
-    false,
-    false,
-    false,
-    false,
+const ImageSlider = () => {
+  const [modelDefault, setModelDefault] = useState([
+    model_original_glasses,
+    model_original_top,
+    model_original_shorts,
+    model_original_shoes,
   ]);
-  const [skipAnimation, setSkipAnimation] = useState<boolean>(false);
-  const isTouchDevice = useIsTouchdevice();
 
-  const refs = useRef<(HTMLDivElement | null)[]>(Array(4).fill(null));
+  const model_avilable = [
+    model_original_glasses,
+    model_original_top,
+    model_original_shorts,
+    model_original_shoes,
+    model_modified_glasses,
+    model_modified_top,
+    model_modified_shorts,
+    model_modified_shoes,
+  ];
 
-  usePreloadImages([...initialModel, ...modelModified, ...modelBackground]);
+  const [model, setModel] = useState(modelDefault);
+  const [skipAnimation, setSkipAnimation] = useState(false);
+
+  const rectHead = useRef<HTMLDivElement | null>(null);
+  const rectTop = useRef<HTMLDivElement | null>(null);
+  const rectShorts = useRef<HTMLDivElement | null>(null);
+  const rectShoes = useRef<HTMLDivElement | null>(null);
+
+  const isTouchDevice = useIsTouchDevice();
+
+  usePreloadImages(model_avilable);
+
+  useEffect(() => {
+    setModel(modelDefault);
+  }, [modelDefault]);
 
   const handleMouseDown = useCallback(
-    (index: number) => {
-      setIsClick((prev) => {
-        const newClick = [...prev];
-        newClick[index] = !prev[index];
-        return newClick;
-      });
-
-      setModel((prev) => {
-        const newModel = [...prev];
-        newModel[index] = isClick[index]
-          ? initialModel[index]
-          : modelModified[index];
-        return newModel;
-      });
-
-      if (isTouchDevice) {
-        if (model[index] === modelModified[index]) {
-          refs.current[index]?.classList.add("imgTransitionSlideBack");
-          setTimeout(() => {
-            refs.current[index]?.classList.remove("imgTransitionSlideBack");
-          }, 300);
-        } else {
-          refs.current[index]?.classList.add("imgTransitionSlide");
-          setTimeout(() => {
-            refs.current[index]?.classList.remove("imgTransitionSlide");
-          }, 300);
-        }
-      }
+    (modelIndex: number, modelModified: string, modelOriginal: string) => {
+      setModelDefault((prevModelDefault) => [
+        ...prevModelDefault.slice(0, modelIndex),
+        prevModelDefault[modelIndex] === modelModified
+          ? modelOriginal
+          : modelModified,
+        ...prevModelDefault.slice(modelIndex + 1),
+      ]);
+      setSkipAnimation(true);
     },
-    [isClick, initialModel, modelModified]
+    []
   );
 
   const handleMouseOver = useCallback(
-    (index: number) => {
+    (
+      ref: React.MutableRefObject<HTMLDivElement | null>,
+      modelIndex: number,
+      newModel: string
+    ) => {
       if (!skipAnimation) {
-        setModel((prev) => {
-          const newModel = [...prev];
-          newModel[index] = modelModified[index];
-          return newModel;
-        });
-
-        refs.current[index]?.classList.add("imgTransitionSlide");
+        setModel((prevModel) => [
+          ...prevModel.slice(0, modelIndex),
+          newModel,
+          ...prevModel.slice(modelIndex + 1),
+        ]);
+        ref.current?.classList.add("imgTransitionSlide");
         setTimeout(() => {
-          refs.current[index]?.classList.remove("imgTransitionSlide");
+          ref.current?.classList.remove("imgTransitionSlide");
         }, 300);
       }
       setSkipAnimation(false);
     },
-    [skipAnimation, modelModified]
+    [skipAnimation]
   );
 
   const handleMouseOut = useCallback(
-    (index: number) => {
+    (
+      ref: React.MutableRefObject<HTMLDivElement | null>,
+      modelIndex: number,
+      newModel: string
+    ) => {
       if (!skipAnimation) {
-        setModel((prev) => {
-          const newModel = [...prev];
-          newModel[index] = initialModel[index];
-          return newModel;
-        });
-
-        refs.current[index]?.classList.add("imgTransitionSlideBack");
+        setModel((prevModel) => [
+          ...prevModel.slice(0, modelIndex),
+          newModel,
+          ...prevModel.slice(modelIndex + 1),
+        ]);
+        ref.current?.classList.add("imgTransitionSlideBack");
         setTimeout(() => {
-          refs.current[index]?.classList.remove("imgTransitionSlideBack");
+          ref.current?.classList.remove("imgTransitionSlideBack");
         }, 300);
       }
       setSkipAnimation(false);
     },
-    [skipAnimation, initialModel]
+    [skipAnimation]
+  );
+
+  const renderImageWrapper = (
+    modelIndex: number,
+    modelSrc: string,
+    backgroundSrc: string,
+    ref: React.RefObject<HTMLDivElement>,
+    modelModified: string,
+    modelOriginal: string
+  ) => (
+    <div className="imgWrapper">
+      <img src={modelSrc} alt={`Model ${modelIndex}`} />
+      <div
+        style={
+          modelIndex === 2 && navigator.userAgent.includes("Firefox")
+            ? { height: "96%" }
+            : {}
+        }
+        className="overlay"
+        ref={ref}
+        onMouseDown={() =>
+          handleMouseDown(modelIndex, modelModified, modelOriginal)
+        }
+        onMouseEnter={() =>
+          !isTouchDevice && modelDefault[modelIndex] === modelOriginal
+            ? handleMouseOver(ref, modelIndex, modelModified)
+            : handleMouseOut(ref, modelIndex, modelOriginal)
+        }
+        onMouseLeave={() =>
+          !isTouchDevice && modelDefault[modelIndex] === modelOriginal
+            ? handleMouseOut(ref, modelIndex, modelOriginal)
+            : handleMouseOver(ref, modelIndex, modelModified)
+        }
+      >
+        <img src={backgroundSrc} alt={`Background ${modelIndex}`} />
+      </div>
+    </div>
   );
 
   return (
     <div className="imgContainer">
-      {model.map((src, index) => (
-        <div key={index} className="imgWrapper">
-          <img src={src} alt={`ModelPart${index}`} />
-          <div
-            style={
-              index == 2 && navigator.userAgent.indexOf("Firefox") != -1
-                ? { height: "96%" }
-                : {}
-            }
-            className="overlay"
-            ref={(el) => (refs.current[index] = el)}
-            onMouseDown={() => handleMouseDown(index)}
-            onMouseEnter={() => !isTouchDevice && handleMouseOver(index)}
-            onMouseLeave={() => !isTouchDevice && handleMouseOut(index)}
-          >
-            <img src={modelBackground[index]} alt={`Background ${index}`} />
-          </div>
-        </div>
-      ))}
+      {renderImageWrapper(
+        0,
+        model[0],
+        model_background_glasses,
+        rectHead,
+        model_modified_glasses,
+        model_original_glasses
+      )}
+      {renderImageWrapper(
+        1,
+        model[1],
+        model_background_top,
+        rectTop,
+        model_modified_top,
+        model_original_top
+      )}
+      {renderImageWrapper(
+        2,
+        model[2],
+        model_background_shorts,
+        rectShorts,
+        model_modified_shorts,
+        model_original_shorts
+      )}
+      {renderImageWrapper(
+        3,
+        model[3],
+        model_background_shoes,
+        rectShoes,
+        model_modified_shoes,
+        model_original_shoes
+      )}
     </div>
   );
 };
