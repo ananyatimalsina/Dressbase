@@ -15,7 +15,9 @@
   "dependencies": {
     "cheeseburger-menu": "^0.0.14",
     "hamburger-react": "^2.5.1",
+    "prism-react-renderer": "^2.3.1",
     "react": "^18.2.0",
+    "react-code-block": "^1.0.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.2.1",
     "recharts": "^2.12.7"

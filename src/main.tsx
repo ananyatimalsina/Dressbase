@@ -14,7 +14,13 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       innerScale={1}
       outerScale={2}
       outerAlpha={0}
-      clickables={["a", ".hamburger-react", ".overlay", ".recharts-surface"]}
+      clickables={[
+        "a",
+        ".hamburger-react",
+        ".overlay",
+        ".recharts-surface",
+        ".investNowBtn",
+      ]}
       innerStyle={{
         backgroundColor: "#000",
       }}

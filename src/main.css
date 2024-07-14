@@ -44,7 +44,7 @@ body {
   font-weight: 300;
   font-style: normal;
   text-align: center;
-  font-size: 1.1rem;
+  font-size: 1.25rem;
 }
 
 .textBold {
@@ -54,4 +54,13 @@ body {
   font-style: normal;
   text-align: center;
   font-size: 1.5rem;
+}
+
+.heading {
+  font-family: "Comfortaa", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  text-align: center;
+  font-size: 2rem;
 }

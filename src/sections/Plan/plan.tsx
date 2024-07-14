@@ -10,6 +10,11 @@ import {
 import "./plan.css";
 import { useEffect, useState } from "react";
 
+import { CodeBlock } from "react-code-block";
+import { themes } from "prism-react-renderer";
+
+//TODO: Optimize mobile view
+
 export default function Plan() {
   const [width, setWidth] = useState(900);
 
@@ -70,9 +75,20 @@ export default function Plan() {
     },
   ];
 
+  const code = `
+import dressbase
+  
+dressbase = dressbase.Dressbase("API_KEY")
+  
+inputImg = "path/to/image.jpg"
+inputClothes = ["path/to/cloth1.jpg", "path/to/cloth2.jpg"]
+  
+outputImg = dressbase.modifyClothing(inputImg, inputClothes)
+`;
+
   return (
     <div className="planContainer">
-      <h1 className="textBold">Das Problem</h1>
+      <h1 className="heading">Das Problem</h1>
       <div className="introContainer">
         <div
           style={{
@@ -82,7 +98,8 @@ export default function Plan() {
           }}
         >
           <a
-            className="textBold"
+            style={{ fontSize: "1.5rem" }}
+            className="textLink"
             target="_blank"
             href="https://www.coveo.com/en/resources/reports/holiday-shopper-trends-2022"
           >
@@ -105,10 +122,11 @@ export default function Plan() {
           </BarChart>
         </div>
         <span className="text">
-          Im Jahre 2022 gaben Online Shopper als häufigsten Grund für
+          Im Jahre 2022 gaben Online-Shopper als häufigsten Grund für
           Warenrückgaben an, dass die Größe, Passform oder Farbe nicht stimmte,
           als vierthäufigsten Grund, dass die Teile in Bildern anders aussahen.
-          Beide dieser Retour-Probleme können mithilfe von sogennanten{" "}
+          Beide dieser Retour-Probleme, welche die Modeindustrie viel Geld und
+          CO₂ kosten, können mithilfe von sogenannten{" "}
           <a
             className="textLink"
             href="https://en.wikipedia.org/wiki/Virtual_dressing_room"
@@ -116,7 +134,7 @@ export default function Plan() {
           >
             "Virtual Dressing Rooms"
           </a>{" "}
-          in der Modebranche gelöst werden.
+          gelöst werden.
         </span>
       </div>
       <h1 style={{ fontSize: "2rem" }} className="brandingText">
@@ -131,7 +149,7 @@ export default function Plan() {
         >
           SaaS
         </a>{" "}
-        agierende Platform für virtuelle Anproben, von Entwicklern für
+        agierende Plattform für virtuelle Anproben von Entwicklern für
         Entwickler. Im Gegensatz zu unseren Konkurrenten verwenden wir{" "}
         <a
           className="textLink"
@@ -148,9 +166,50 @@ export default function Plan() {
         >
           AR
         </a>{" "}
-        über Meilen hinweg vorraus ist und auf vorab trainierte latente
-        Diffusionsmodelle basiert.
+        über Meilen hinweg voraus ist und auf vorab trainierte latente
+        Diffusionsmodelle basiert. Um unseren Traum einer Online Fashion
+        Revolution zu verwirklichen, bedarf es jedoch an vielen begeisterten
+        Investoren. Was wir Ihnen bieten?
       </span>
+      <div className="apiContainer">
+        <span className="text">
+          Ein Top-Produkt, welches die{" "}
+          <a
+            className="textLink"
+            href="https://github.blog/2023-06-08-developer-experience-what-is-it-and-why-should-you-care/"
+            target="_blank"
+          >
+            Entwicklererfahrung
+          </a>{" "}
+          priorisiert, mithilfe einer einfach verwendbaren{" "}
+          <a
+            className="textLink"
+            href="https://en.wikipedia.org/wiki/API"
+            target="_blank"
+          >
+            API
+          </a>
+          , damit sie sich auf das konzentrieren können, was wirklich wichtig
+          ist: Ihre Fashion und die Kunden.
+        </span>
+        <div style={{ flexGrow: 1, marginLeft: "1rem", marginRight: "1rem" }}>
+          <CodeBlock code={code} language="python" theme={themes.dracula}>
+            <CodeBlock.Code className="codeblock">
+              <CodeBlock.LineContent>
+                <CodeBlock.Token />
+              </CodeBlock.LineContent>
+            </CodeBlock.Code>
+          </CodeBlock>
+        </div>
+      </div>
+      <div className="pricingContainer"></div>
+      <a
+        href="https://github.com/ananyatimalsina"
+        target="_blank"
+        className="investNowBtn textBold"
+      >
+        Jetzt Investieren
+      </a>
     </div>
   );
 }

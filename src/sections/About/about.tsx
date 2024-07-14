@@ -1,29 +1,21 @@
 import AboutCard from "../../components/AboutCard/AboutCard";
 
 import image from "../../assets/background.jpg";
-import ananya from "../../assets/ananya.png";
-import niklas from "../../assets/niklas.png";
+import ananya from "../../assets/team/ananya.png";
+import niklas from "../../assets/team/niklas.png";
 
 import "./about.css";
-
-// TODO: Optimize for mobile
 
 function about() {
   return (
     <div className="aboutContainer">
-      <h1 className="textBold">Das Team</h1>
+      <h1 className="heading">Das Team</h1>
       <div className="aboutCardsContainer">
         <AboutCard
           img={ananya}
           alt="Ananya"
           title="CEO, Ananya Timalsina"
           text="Mit 5 Jahren Erfahrung in Software, von Videospielen bis hin zu professionellen Websites, und als frühzeitiger Anwender und Enthusiast von KI bringe ich sowohl das technische Know-how als auch die kreative Vision an Bord, um Dressbase zu einem führenden Unternehmen in der Branche zu katapultieren."
-        />
-        <AboutCard
-          img={image}
-          alt="Luca"
-          title="COO, Luca Augsten"
-          text="Help me!"
         />
         <AboutCard
           img={niklas}
@@ -33,9 +25,15 @@ function about() {
         />
         <AboutCard
           img={image}
+          alt="Luca"
+          title="HoMR, Luca Augsten"
+          text="Mit mehreren Jahren Erfahrung in der Marktforschung entwickle ich eine zielführende Strategie, um Dressbase mit seiner revolutionären Idee zum Erfolg zu führen."
+        />
+        <AboutCard
+          img={image}
           alt="Jonathan"
           title="CAO, Jonathan Zdebel"
-          text="Help me!"
+          text="Mit einem guten Händchen für Personen und Kommunikation leite ich den internen Austausch zwischen unseren Mitarbeitern und kümmere mich darum, dass Sie sich in unserer Firma wohlfühlen."
         />
         <AboutCard
           img={image}

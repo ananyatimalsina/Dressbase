@@ -6,21 +6,21 @@
   margin: 2rem;
 }
 
-.planContainer a {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  color: #694d85;
-}
-
-.introContainer {
+.introContainer,
+.apiContainer {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
+  margin: 1rem;
 }
 
 @media (max-width: 1200px) {
   .introContainer {
     flex-direction: column;
+  }
+  .apiContainer {
+    flex-direction: column-reverse;
   }
 }
 
@@ -32,4 +32,28 @@
   text-align: center;
   font-size: 1.1rem;
   color: #694d85;
+}
+
+.codeblock {
+  background-color: #1f2937;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  font-size: 1.1rem;
+}
+
+.investNowBtn {
+  padding: 0.5rem;
+  text-decoration: none;
+  background: transparent;
+  border: solid 3px #694d85;
+  cursor: none;
+  color: #000;
+  transition: transform 0.5s forwards;
+}
+
+.investNowBtn:hover {
+  background: #694d85;
+  transform: scale(1.1);
 }
