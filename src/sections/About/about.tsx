@@ -1,10 +1,10 @@
 import AboutCard from "../../components/AboutCard/AboutCard";
 
-import ananya from "../../assets/team/ananya.png";
-import niklas from "../../assets/team/niklas.png";
-import jonathan from "../../assets/team/jonathan.png";
-import paul from "../../assets/team/paul.png";
-import luca from "../../assets/team/luca.png";
+import ananya from "../../assets/team/ananya.webp";
+import niklas from "../../assets/team/niklas.webp";
+import jonathan from "../../assets/team/jonathan.webp";
+import paul from "../../assets/team/paul.webp";
+import luca from "../../assets/team/luca.webp";
 
 import "./about.css";
 import usePreloadImages from "../../usePreloadImages";
