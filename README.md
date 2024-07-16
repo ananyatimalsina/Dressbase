@@ -9,4 +9,4 @@ Logo design: Niklas Wenz & Ananya Timalsina
 Business Plan: Luca Augsten & Ananya Timalsina
 
 ## Screenshot
-<img src="https://github.com/ananyatimalsina/dressbase/blob/main/screenshots/main.png" width="40%"></img>
+<img src="https://github.com/ananyatimalsina/dressbase/blob/main/screenshots/main.png"></img>
