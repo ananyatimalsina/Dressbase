@@ -207,7 +207,7 @@ outputImg = dressbase.modifyClothing(inputImg, inputClothes)
           href="https://arxiv.org/abs/1711.08447"
           target="_blank"
         >
-          VTON
+          VITON
         </a>
         , eine neue Methode, welche dem traditionellen{" "}
         <a
@@ -288,7 +288,7 @@ outputImg = dressbase.modifyClothing(inputImg, inputClothes)
             columns={["", "Dressbase", "Fitanalytics", "Else Corp", "FXGear"]}
             rows={[
               ["Preis", "$0.002 pro Bild", "N/A", "N/A", "N/A"],
-              ["Virtual Dressing Room", "VTON", "Nein", "AR", "AR"],
+              ["Virtual Dressing Room", "VITON", "Nein", "AR", "AR"],
               ["API", "Ja", "Ja", "Nein", "Nein"],
               ["Kleidungsempfehlungen", "Nein", "Ja", "Nein", "Nein"],
             ]}
